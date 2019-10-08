@@ -1,0 +1,17 @@
+{
+  "MasterServerURL": "https://localhost:44391",
+  "ServerLogOutput": null,
+  "LocalLogOutput": null,
+  "MachineGUID": "0f410d3d-c967-40b3-a222-8010b8040973",
+  "GameStarterMode": "SingleGameStarter",
+  "ServerMode": "NoServerDemoMode",
+  "CardModeMode": "NoCardNeededDemoMode",
+  "MasterStarterMasterLoc": null,
+  "ServerCredential": {
+    "UserName": "machine1@vrstore1.com",
+    "Password": "Abcd1234@"
+  },
+  "MachineName": "TestMachine" //,
+  //"DefualtGameGUID": "1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"
+}
+

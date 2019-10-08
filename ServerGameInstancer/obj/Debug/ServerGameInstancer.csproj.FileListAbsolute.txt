@@ -1,0 +1,13 @@
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\obj\Debug\ServerGameInstancer.csprojAssemblyReference.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\obj\Debug\ServerGameInstancer.csproj.CoreCompileInputs.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\bin\Debug\GameInstancerConfig.xml
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\bin\Debug\GameInstancerConfig.json
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\bin\Debug\ServerGameInstancer.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\bin\Debug\ServerGameInstancer.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\bin\Debug\GameInstancer.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\bin\Debug\GameInstancer.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\obj\Debug\ServerGameInstancer.csproj.CopyComplete
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\obj\Debug\ServerGameInstancer.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServerGameInstancer\obj\Debug\ServerGameInstancer.pdb

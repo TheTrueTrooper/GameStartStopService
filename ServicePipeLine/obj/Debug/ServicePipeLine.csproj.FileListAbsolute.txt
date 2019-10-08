@@ -1,0 +1,9 @@
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\bin\Debug\ServicePipeLine.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\bin\Debug\ServicePipeLine.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\obj\Debug\ServicePipeLine.csprojAssemblyReference.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\obj\Debug\ServicePipeLine.csproj.CoreCompileInputs.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\obj\Debug\ServicePipeLine.csproj.CopyComplete
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\obj\Debug\ServicePipeLine.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\obj\Debug\ServicePipeLine.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\ServicePipeLine\bin\Debug\Newtonsoft.Json.xml

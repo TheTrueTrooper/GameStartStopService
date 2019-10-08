@@ -1,0 +1,16 @@
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\TestClientConsole.exe.config
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\TestClientConsole.exe
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\TestClientConsole.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\GameStartAndStopPipeClient.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\ServicePipeLine.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\GameInstancer.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\Newtonsoft.Json.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\GameStartAndStopPipeClient.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\ServicePipeLine.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\GameInstancer.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Release\Newtonsoft.Json.xml
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Release\TestClientConsole.csprojAssemblyReference.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Release\TestClientConsole.csproj.CoreCompileInputs.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Release\TestClientConsole.csproj.CopyComplete
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Release\TestClientConsole.exe
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Release\TestClientConsole.pdb

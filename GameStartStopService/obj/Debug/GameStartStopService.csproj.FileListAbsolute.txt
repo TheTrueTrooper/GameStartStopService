@@ -1,0 +1,12 @@
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Debug\GameStartStopService.exe.config
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Debug\GameStartStopService.exe
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Debug\GameStartStopService.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Debug\GameStartStopService.csprojAssemblyReference.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Debug\GameStartStopService.csproj.CoreCompileInputs.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Debug\GameStartStopService.exe
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Debug\GameStartStopService.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Debug\GameStartStopService.Service1.resources
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Debug\GameStartStopService.csproj.GenerateResource.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Debug\NFC_CardReader.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Debug\NFC_CardReader.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Debug\GameStartStopService.csproj.CopyComplete

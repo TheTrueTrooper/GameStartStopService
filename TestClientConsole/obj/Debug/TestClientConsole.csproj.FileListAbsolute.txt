@@ -1,0 +1,15 @@
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\TestClientConsole.exe.config
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\TestClientConsole.exe
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\TestClientConsole.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Debug\TestClientConsole.csprojAssemblyReference.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Debug\TestClientConsole.csproj.CoreCompileInputs.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Debug\TestClientConsole.csproj.CopyComplete
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Debug\TestClientConsole.exe
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\obj\Debug\TestClientConsole.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\RL8000_NFCReader.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\RL8000_NFCReader.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib_aip_iso14443A.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib_nfc.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib_reader.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib.cs
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\Drivers\rfidlib_drv_RL8000.dll

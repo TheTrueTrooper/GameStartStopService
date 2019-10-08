@@ -1,0 +1,135 @@
+[
+  {
+    "VRGameID": "1316E2E1-E19B-4E49-BDF1-CA4A24BF609B",
+    "MinNumberShares": null,
+    "MaxNumberShares": null,
+    "Price": 25,
+    "IsActive": true,
+    "IsDeleted": false,
+    "CreatedBy": null,
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedBy": null,
+    "UpdatedAt": null,
+    "Name": "Phantom Breaker: Battle Grounds",
+    "StartOptions": "",
+    "ImagePath": "PutPathToImageHere",
+    "Path": "I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe",
+    "PlayTime": 0,
+    "Description": "This is a Indie title from japan",
+    "OptionalExes": [
+      {
+        "ID": "dfasfds",
+        "Path": "C:\\Windows\\System32\\notepad.exe",
+        "Delay": "0",
+        "StartOptions": "",
+        "IsDeleted": false
+      }
+    ]
+  },
+  {
+    "VRGameID": "1316E2E1-E19B-4E49-BDF1-CA4A24BF609C",
+    "MinNumberShares": null,
+    "MaxNumberShares": null,
+    "Price": 25,
+    "IsActive": true,
+    "IsDeleted": false,
+    "CreatedBy": null,
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedBy": null,
+    "UpdatedAt": null,
+    "Name": "A Hat in time",
+    "StartOptions": "",
+    "ImagePath": "PutPathToImageHere",
+    "Path": "I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe",
+    "PlayTime": 0,
+    "Description": "This is a Indie platformer game",
+    "OptionalExes": [
+      {
+        "ID": "afdssadf",
+        "Path": "C:\\Windows\\System32\\notepad.exe",
+        "Delay": "0",
+        "StartOptions": "",
+        "IsDeleted": false
+      }
+    ]
+  },
+  {
+    "VRGameID": "1316E2E1-E19B-4E49-BDF1-CA4A24BF609D",
+    "MinNumberShares": null,
+    "MaxNumberShares": null,
+    "Price": 25,
+    "IsActive": true,
+    "IsDeleted": false,
+    "CreatedBy": null,
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedBy": null,
+    "UpdatedAt": null,
+    "Name": "Stardew Valley",
+    "StartOptions": "",
+    "ImagePath": "PutPathToImageHere",
+    "Path": "I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe",
+    "PlayTime": 0,
+    "Description": "This a indie harvest moon game",
+    "OptionalExes": [
+      {
+        "ID": "asdfsafd",
+        "Path": "C:\\Windows\\System32\\notepad.exe",
+        "Delay": "0",
+        "StartOptions": "",
+        "IsDeleted": false
+      }
+    ]
+  }
+]
+
+//[
+//  {
+//    "GUID": "1316E2E1-E19B-4E49-BDF1-CA4A24BF609B",
+//    "Name": "Phantom Breaker: Battle Grounds",
+//    "ImagePath": "PutPathToImageHere",
+//    "Path": "I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe",
+//    "PlayTime": "7000",
+//    "CostToPlay": "25",
+//    "StartOptions": "",
+//    "OptionalAddtionalExeStarts": [
+//      {
+//        "Path": "C:\\Windows\\System32\\notepad.exe",
+//        "Delay": "0",
+//        "StartOptions": ""
+//      }
+//    ]
+//  },
+//  {
+//    "GUID": "1316E2E1-E19B-4E49-BDF1-CA4A24BF609C",
+//    "Name": "A Hat in time",
+//    "ImagePath": "PutPathToImageHere",
+//    "Path": "I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe",
+//    "PlayTime": "2000",
+//    "CostToPlay": "25",
+//    "StartOptions": "",
+//    "OptionalAddtionalExeStarts": [
+//      {
+//        "Path": "C:\\Windows\\System32\\notepad.exe",
+//        "Delay": "0",
+//        "StartOptions": ""
+//      }
+//    ]
+//  },
+//  {
+//    "GUID": "1316E2E1-E19B-4E49-BDF1-CA4A24BF609D",
+//    "Name": "Stardew Valley",
+//    "ImagePath": "PutPathToImageHere",
+//    "Path": "I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe",
+//    "PlayTime": "1000",
+//    "CostToPlay": "25",
+//    "StartOptions": "",
+//    "OptionalAddtionalExeStarts": [
+//      {
+//        "Path": "C:\\Windows\\System32\\notepad.exe",
+//        "Delay": "0",
+//        "StartOptions": ""
+//      }
+//    ]
+//  }
+//]
+

@@ -1,0 +1,2 @@
+<RegularMessage Time="6/17/2019 11:48:59 PM">'Arcade Game Start And Stop Service' has Started.<RegularMessage>
+<RegularMessage Time="6/17/2019 11:49:01 PM">'Arcade Game Start And Stop Service' has stopped.<RegularMessage>
