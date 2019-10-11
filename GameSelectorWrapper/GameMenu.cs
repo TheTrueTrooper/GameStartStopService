@@ -11,7 +11,11 @@ using System.Threading.Tasks;
 
 namespace GameSelectorWrapper
 {
-
+    public enum StartModes
+    {
+        Normal,
+        DisabledMessage
+    }
 
     public class GameMenu
     {
@@ -32,7 +36,7 @@ namespace GameSelectorWrapper
         /// </summary>
         protected internal Process MenuGameExe { get; private set; }
 
-        string ThePath = $"{Environment.CurrentDirectory}\\GameSelectorV0.7\\GameSelector.exe";
+        string ThePath = $"{Environment.CurrentDirectory}\\VRMenu\\GameSelector.exe";
 
         /// <summary>
         /// creates an optional Exe Instance
@@ -59,7 +63,7 @@ namespace GameSelectorWrapper
         /// <summary>
         /// starts the optional exe
         /// </summary>
-        public virtual void StartMenu()
+        public virtual void StartMenu(StartModes StartMode = StartModes.Normal)
         {
             ShouldBeRunning = true;
 
@@ -72,6 +76,15 @@ namespace GameSelectorWrapper
                 }
                 catch
                 { }
+            }
+
+            if(StartMode == StartModes.Normal)
+            {
+                MenuGameExe.StartInfo.Arguments = "";
+            }
+            else
+            {
+                MenuGameExe.StartInfo.Arguments = "-disabled";
             }
 
             MenuGameExe.Start();
@@ -104,9 +117,9 @@ namespace GameSelectorWrapper
             }
         }
 
-        public PipeJSONResponse<object> NotifyOfCardTap()
+        public JSONResponse<object> NotifyOfCardTap()
         {
-            PipeJSONAction<object> Commandpackage = new PipeJSONAction<object>() { ActionName = "OnCardTap", ActionData = new { } };
+            JSONAction<object> Commandpackage = new JSONAction<object>() { ActionName = "OnCardTap", ActionData = new { } };
             return ClientPipe.SendCommandRequest<object, object>(Commandpackage);
         }
     }

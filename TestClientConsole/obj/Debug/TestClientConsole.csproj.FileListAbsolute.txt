@@ -13,3 +13,7 @@ C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\b
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib_reader.dll
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib.cs
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\Drivers\rfidlib_drv_RL8000.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\ServicePipeLine.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\ServicePipeLine.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\Newtonsoft.Json.xml

@@ -16,9 +16,9 @@ namespace ServicePipeLine
 
         bool Listening = true;
 
-        public PipeRequestServer(string ServerName, bool ConstantListener = true)
+        public PipeRequestServer(string ServerName, int MaxNumberOfConnections = 1, bool ConstantListener = true)
         {
-            Server = new JSONPipeServer(ServerName);
+            Server = new JSONPipeServer(ServerName, MaxNumberOfConnections);
             if (ConstantListener)
             {
                 Thread = new Thread(new ParameterizedThreadStart(ListenLoop));
@@ -34,9 +34,9 @@ namespace ServicePipeLine
 
             foreach(MethodInfo M in Methods)
             {
-                if (!M.ReturnType.IsSubclassOf(typeof(PipeJSONResponseRoot)) || !M.ReturnType.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IPipeJSONResponse<>)))
+                if (!M.ReturnType.IsSubclassOf(typeof(JSONResponseRoot)) || !M.ReturnType.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IJSONResponse<>)))
                     throw new Exception("Method has a non-acceptable return.\nClass must be a a decendant of PipeJSONResponseRoot && implement the IPipeJSONResponse<> interface.\nTry using PipeJSONResponse<T> Templated to a class with the required data");
-                if (M.GetParameters().Count() != 1 || !M.GetParameters()[0].ParameterType.IsSubclassOf(typeof(PipeJSONActionRoot)) || !M.GetParameters()[0].ParameterType.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IPipeJSONAction<>)))
+                if (M.GetParameters().Count() != 1 || !M.GetParameters()[0].ParameterType.IsSubclassOf(typeof(JSONActionRoot)) || !M.GetParameters()[0].ParameterType.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IJSONAction<>)))
                     throw new Exception("Method has a non-acceptable input\nThere can't be more than one param.\nClass must be a a decendant of PipeJSONResponseRoot && implement the IPipeJSONResponse<> interface.\nTry using PipeJSONResponse<T> Templated to a class with the required data.");
 
                 InstancedAndMethodInfo Process = new InstancedAndMethodInfo();
@@ -51,7 +51,7 @@ namespace ServicePipeLine
         public void ProcessRequest()
         {
             Server.WaitForConnect();
-            PipeJSONAction<dynamic> Request = Server.ListenForCommand<dynamic>();
+            JSONAction<dynamic> Request = Server.ListenForCommand<dynamic>();
 
             if (Processes.ContainsKey(Request.ActionName))
             {
@@ -70,7 +70,7 @@ namespace ServicePipeLine
             }
             else
             {
-                PipeJSONResponse<dynamic> Response = new PipeJSONResponse<dynamic>() { ActionData = new { }, RequestStatus = PipeJSONResponseStatus.ActionNotFound, ActionName = Request.ActionName };
+                JSONResponse<dynamic> Response = new JSONResponse<dynamic>() { ActionData = new { }, RequestStatus = JSONResponseStatus.ActionNotFound, ActionName = Request.ActionName };
                 if (Server.IsConnected)
                     Server.SendResponseDataPackage(Response);
                 if (Server.IsConnected)

@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameStartAndStopDummyServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,6 +53,10 @@
     <ProjectReference Include="..\RL8000_NFCReader\RL8000_NFCReader.csproj">
       <Project>{25d711a8-c8d5-481c-8c06-08197d1e87f6}</Project>
       <Name>RL8000_NFCReader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServicePipeLine\ServicePipeLine.csproj">
+      <Project>{08e692e7-5741-4167-b4c9-6a003885e258}</Project>
+      <Name>ServicePipeLine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

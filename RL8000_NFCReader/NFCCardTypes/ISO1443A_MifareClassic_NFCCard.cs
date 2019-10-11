@@ -9,14 +9,29 @@ namespace RL8000_NFCReader.NFCCardTypes
 {
     public class ISO1443A_MifareClassic_NFCCard : IDisposable
     {
-
+        /// <summary>
+        /// The a pointer to the reader that this card is currently connected to
+        /// </summary>
         RL8000_NFC Owner;
 
+        /// <summary>
+        /// The actual pointer to the card
+        /// </summary>
         internal UIntPtr CardHandle { private set; get; }
+
+        /// <summary>
+        /// NFCCard info as per the readers api
+        /// </summary>
         public NFCCardInfo CardInfo { private set; get; }
 
+        /// <summary>
+        /// Is this virtual representation of the card still in use or has it been disposed 
+        /// </summary>
         public bool Disposed { private set; get; } = false;
 
+        /// <summary>
+        /// Just a common error
+        /// </summary>
         const string DisposedError = "This card has been disposed already";
 
         /// <summary>
@@ -35,9 +50,9 @@ namespace RL8000_NFCReader.NFCCardTypes
         /// <summary>
         /// Athenthicates a sector against a key
         /// </summary>
-        /// <param name="BlockAddress"></param>
-        /// <param name="Key"></param>
-        /// <param name="KeyType"></param>
+        /// <param name="BlockAddress">The address to read</param>
+        /// <param name="Key">The 6 Byte Key</param>
+        /// <param name="KeyType">The keys type (A or B)</param>
         public void Athenthicate(byte BlockAddress, byte[] Key, KeyTypes KeyType)
         {
             if (Disposed)
@@ -52,8 +67,8 @@ namespace RL8000_NFCReader.NFCCardTypes
         /// <summary>
         /// Reads raw data bytes to a block
         /// </summary>
-        /// <param name="BlockAddress"></param>
-        /// <param name="Value"></param>
+        /// <param name="BlockAddress">The address to read</param>
+        /// <returns>The raw 16 bytes stored on the card at that address</returns>
         public byte[] ReadBlock(byte BlockAddress)
         {
             if (Disposed)
@@ -67,10 +82,11 @@ namespace RL8000_NFCReader.NFCCardTypes
         }
 
         /// <summary>
-        /// Writes raw data bytes to a block
+        /// Writes raw data bytes from a block
+        ///     note any writes to trail blocks may render your card useless
         /// </summary>
-        /// <param name="BlockAddress"></param>
-        /// <param name="Value"></param>
+        /// <param name="BlockAddress">The address to increase</param>
+        /// <param name="Data">the 16 bytes of data to write</param>
         public void WriteBlock(byte BlockAddress, byte[]Data)
         {
             if (Disposed)
@@ -86,8 +102,8 @@ namespace RL8000_NFCReader.NFCCardTypes
         /// Increases Value
         /// Requires a value to be written to the block for formating
         /// </summary>
-        /// <param name="BlockAddress"></param>
-        /// <param name="Value"></param>
+        /// <param name="BlockAddress">The address to increase</param>
+        /// <param name="Value">The value to increase the addresses value by</param>
         public void IncrementValue(byte BlockAddress, UInt32 Value)
         {
             if (Disposed)
@@ -101,8 +117,8 @@ namespace RL8000_NFCReader.NFCCardTypes
         /// Decreases Value
         /// Requires a value to be written to the block for formating
         /// </summary>
-        /// <param name="BlockAddress"></param>
-        /// <param name="Value"></param>
+        /// <param name="BlockAddress">The address to decrease</param>
+        /// <param name="Value">The value to decrease the addresses value by</param>
         public void DecrementValue(byte BlockAddress, UInt32 Value)
         {
             if (Disposed)
@@ -114,9 +130,10 @@ namespace RL8000_NFCReader.NFCCardTypes
 
         /// <summary>
         /// Writes a value to a block with formating
+        ///     note any writes to trail blocks may render your cards sector useless
         /// </summary>
-        /// <param name="BlockAddress"></param>
-        /// <param name="Value"></param>
+        /// <param name="BlockAddress">The address to write to</param>
+        /// <param name="Value">The value write to the address</param>
         public void WriteValue(byte BlockAddress, UInt32 Value)
         {
             if (Disposed)
@@ -127,10 +144,10 @@ namespace RL8000_NFCReader.NFCCardTypes
         }
 
         /// <summary>
-        /// Reads raw data bytes to a block
+        /// Reads value data from a block
         /// </summary>
-        /// <param name="BlockAddress"></param>
-        /// <param name="Value"></param>
+        /// <param name="BlockAddress">The address to read</param>
+        /// <returns>The value stored on the card at that address</returns>
         public UInt32 ReadValue(byte BlockAddress)
         {
             if (Disposed)
@@ -139,22 +156,44 @@ namespace RL8000_NFCReader.NFCCardTypes
             byte[] ReadData = new byte[16];
             //since the maufacturer neglected to put in the Read Value (Standard API China) we will hack it in. start with a Raw Block Read 
             int result = rfidlib_aip_iso14443A.MFCL_ReadBlock(Owner.ReaderHandle, CardHandle, BlockAddress, ReadData, BlockSize);
-            //Do our own format check [Value][~Value][Value][A,~A,A,~A]
+            //Do our own format check [Value][~Value][Value][A,~A,A,~A] Note rather than invert the second time just compare the bytes directly rather than invert again to accelerate.
             if (result == 0 && ((ReadData[0] ^ 0xFF) != ReadData[4] || (ReadData[1] ^ 0xFF) != ReadData[5] || (ReadData[2] ^ 0xFF) != ReadData[6] || (ReadData[3] ^ 0xFF) != ReadData[7] ||
-                    (ReadData[4] ^ 0xFF) != ReadData[8] || (ReadData[5] ^ 0xFF) != ReadData[9] || (ReadData[6] ^ 0xFF) != ReadData[10] || (ReadData[7] ^ 0xFF) != ReadData[11] ||
+                    ReadData[0] != ReadData[8] || ReadData[1] != ReadData[9] || ReadData[2] != ReadData[10] || ReadData[3] != ReadData[11] ||
                     ReadData[12] != 0x05 || ReadData[13] != 0xFA || ReadData[14] != 0x05 || ReadData[15] != 0xFA))
                     result = -17;
             if (result != 0)
-                throw new Exception($"Failed to read block {BlockAddress} with result:{result}");
+                throw new Exception($"Failed to read a value from block {BlockAddress} with result:{result}");
             //then take the front four bytes as this is where the value is stored as its least corrupt version luckily.
             return BitConverter.ToUInt32(ReadData,0);
             //[Value][~Value][Value][A,~A,A,~A] thank you Ada for that valueble info. (shes cool look up adafruit industies)
         }
 
         /// <summary>
+        /// Reads value data from a block without formatting checks
+        /// since it isnt technically nessasary leats just make a fast vers
+        /// </summary>
+        /// <param name="BlockAddress">The address to read</param>
+        /// <returns>The value stored on the card at that address</returns>
+        public UInt32 FastReadValue(byte BlockAddress)
+        {
+            if (Disposed)
+                throw new Exception(DisposedError);
+            const byte BlockSize = 16;
+            byte[] ReadData = new byte[16];
+            //since the maufacturer neglected to put in the Read Value (Standard API China) we will hack it in. start with a Raw Block Read 
+            int result = rfidlib_aip_iso14443A.MFCL_ReadBlock(Owner.ReaderHandle, CardHandle, BlockAddress, ReadData, BlockSize);
+            //since it isnt technically nessasary leats just make
+            if (result != 0)
+                throw new Exception($"Failed to read a value from block {BlockAddress} with result:{result}");
+            //then take the front four bytes as this is where the value is stored as its least corrupt version luckily.
+            return BitConverter.ToUInt32(ReadData, 0);
+            //[Value][~Value][Value][A,~A,A,~A] thank you Ada for that valueble info. (shes cool look up adafruit industies)
+        }
+
+        /// <summary>
         /// Temp stores data value in the reader for storage
         /// </summary>
-        /// <param name="BlockAddress"></param>
+        /// <param name="BlockAddress">The address to store to reader internal</param>
         public void RestoreValue(byte BlockAddress)
         {
             if (Disposed)
@@ -166,8 +205,9 @@ namespace RL8000_NFCReader.NFCCardTypes
 
         /// <summary>
         /// Transerfers the Temp data value stored in reader durring a restore to the memory address 
+        ///     note any writes to trail blocks may render your card useless
         /// </summary>
-        /// <param name="BlockAddress"></param>
+        /// <param name="BlockAddress">The address to put to from the reader internal store</param>
         public void TransferValue(byte BlockAddress)
         {
             if (Disposed)
@@ -181,9 +221,11 @@ namespace RL8000_NFCReader.NFCCardTypes
         /// Wouldn't recommend using it as the docs have me super nervous with a repeated value thinking there is a typeo
         /// Creates a access byte
         /// </summary>
-        /// <param name="BlockAddress"></param>
-        /// <param name="Value"></param>
-        /// <returns></returns>
+        /// <param name="Block0Access"></param>
+        /// <param name="Block1Access"></param>
+        /// <param name="Block2Access"></param>
+        /// <param name="TrailOptions"></param>
+        /// <returns>A byte that has all of the write settings (careful with writting to a trail block with this or any other value may render your card useless)</returns>
         public static byte[] MakeAccessbyte(DataBlockAccess Block0Access,  DataBlockAccess Block1Access, DataBlockAccess Block2Access, TrailDataBlockAccess TrailOptions)
         {
             byte[] Return = new byte[4];
@@ -197,8 +239,8 @@ namespace RL8000_NFCReader.NFCCardTypes
         /// Wouldn't recommend using it as the docs have me super nervous with a repeated value thinking there is a typeo
         /// Gets the Access bytes values
         /// </summary>
-        /// <param name="AccessData"></param>
-        /// <returns></returns>
+        /// <param name="AccessData">The access byte yo wish to know more about</param>
+        /// <returns>MifareClassicAccessDataPackage that conatains the info</returns>
         public static MifareClassicAccessDataPackage ParseAccessBytes(byte[] AccessData)
         {
             byte Block0Access = 255;

@@ -1,0 +1,12 @@
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\bin\Debug\TestServerConsole.exe.config
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\bin\Debug\TestServerConsole.exe
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\bin\Debug\TestServerConsole.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\obj\Debug\TestServerConsole.csprojAssemblyReference.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\obj\Debug\TestServerConsole.csproj.CoreCompileInputs.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\obj\Debug\TestServerConsole.exe
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\obj\Debug\TestServerConsole.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\bin\Debug\ServicePipeLine.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\bin\Debug\ServicePipeLine.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestServerConsole\obj\Debug\TestServerConsole.csproj.CopyComplete

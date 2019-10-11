@@ -26,9 +26,9 @@ namespace ServicePipeLine
             Client.CloseConnection();
         }
 
-        public PipeJSONResponse<TResult> SendCommandRequest<Tin, TResult>(PipeJSONAction<Tin> Package, TimeSpan Timeout)
+        public JSONResponse<TResult> SendCommandRequest<Tin, TResult>(JSONAction<Tin> Package, TimeSpan Timeout)
         {
-            PipeJSONResponse<TResult> Result = new PipeJSONResponse<TResult>() { ActionName = Package.ActionName, RequestStatus = PipeJSONResponseStatus.TimeOut, Message = "Client has timed out o its request to the server." };
+            JSONResponse<TResult> Result = new JSONResponse<TResult>() { ActionName = Package.ActionName, RequestStatus = JSONResponseStatus.TimeOut, Message = "Client has timed out o its request to the server." };
             Client = new JSONPipeClient(PipeServerName, URL);
             Client.Connect();
             Task task = Task.Factory.StartNew(() =>
@@ -46,7 +46,7 @@ namespace ServicePipeLine
             return Result;
         }
 
-        public PipeJSONResponse<TResult> SendCommandRequest<Tin, TResult>(PipeJSONAction<Tin> Package)
+        public JSONResponse<TResult> SendCommandRequest<Tin, TResult>(JSONAction<Tin> Package)
         {
             return SendCommandRequest<Tin, TResult>(Package, StandardTimeout);
         }

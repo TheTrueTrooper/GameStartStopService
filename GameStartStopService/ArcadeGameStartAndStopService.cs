@@ -23,6 +23,7 @@ using System.Runtime.InteropServices;
 using GameStartStopService.PipeServer.Events;
 using RL8000_NFCReader;
 using RL8000_NFCReader.MifareClassicEvents;
+using GameStartStopService.PipeServer.Models;
 
 namespace GameStartStopService
 {
@@ -83,9 +84,12 @@ namespace GameStartStopService
         static GameConfigEditor GameConfigEditorInstance;
         static GameSelectorEditor GameSelectorEditorInstance;
 
+        static AttendantConsole AttendantConsole;
+
         static ServerClient TheServerClient;
 
         static bool Disabled = false;
+        bool exit = false;
 
         //depreciated
         //static ACR122UManager CardManger = null;
@@ -110,6 +114,7 @@ namespace GameStartStopService
             }
         }
 
+
         //deprecated readonly static byte[][] AcceptedATRS = new byte[][] { new byte[]{ 0x3B, 0x8F, 0x80, 0x01, 0x80, 0x4F, 0x0C, 0xA0, 0x00, 0x00, 0x03, 0x06, 0x03, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x6A } };
         readonly static byte[] AuthenticationKeys = new byte[6] { 0xAF, 0xFA, 0x03, 0xF1, 0x0A, 0xA9 }; //Our key
         //readonly static byte[] AuthenticationKeys = new byte[6] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }; //Blank key
@@ -120,6 +125,8 @@ namespace GameStartStopService
             MainConfig = JSONServiceConfig.GetJSONServiceConfig();
             Logger = new Logger();
 
+            SlaveLocationModel slaveLocationModel = new SlaveLocationModel();
+
             //GameServicePipeServer.Service = this;
 
             TheServerClient = new ServerClient(MainConfig);
@@ -128,6 +135,8 @@ namespace GameStartStopService
             ServerController.PlayGameEvent += StartGameRequested;
 
             GameMenu = new GameMenu(ServerController);
+
+            
 
             #region depreciated
             //ACR122UManager.GlobalCardCheck = (e) =>
@@ -275,6 +284,10 @@ namespace GameStartStopService
                 catch
                 {}
             }
+
+            AttendantConsole = new AttendantConsole();
+
+            AttendantConsole.Show();
 
             NoIc_GameStarterStopper.ContextMenuStrip = BuildMenu();
             NoIc_GameStarterStopper.Visible = true;
@@ -495,9 +508,12 @@ namespace GameStartStopService
         #region GameEvents
         private void GameInstancerGameHasEnded(object sender, GameEndedEventArgs e)
         {
-            Logger.WriteLog($"GameInstancer - Game has Ended. Time Ended {e.time} Reason: {e.Reason}" );
-            GameMenu.StartMenu();
-            Logger.WriteLog($"GameMenu - Game Menu has Started in response.");
+            if (!exit)
+            {
+                Logger.WriteLog($"GameInstancer - Game has Ended. Time Ended {e.time} Reason: {e.Reason}");
+                GameMenu.StartMenu();
+                Logger.WriteLog($"GameMenu - Game Menu has Started in response.");
+            }
         }
 
         private void GameInstancerGameHasStarted(object sender, GameStartedEventArgs e)
@@ -542,9 +558,17 @@ namespace GameStartStopService
         {
             Disabled = !Disabled;
             if (Disabled)
+            {
                 NoIc_GameStarterStopper.ContextMenuStrip.Items[MenuDisableLocation].Text = "Enable Machine";
+                GameMenu.KillMenu();
+                GameMenu.StartMenu(StartModes.DisabledMessage);
+            }
             else
+            {
                 NoIc_GameStarterStopper.ContextMenuStrip.Items[MenuDisableLocation].Text = "Disable Machine";
+                GameMenu.KillMenu();
+                GameMenu.StartMenu();
+            }
         }
 
         /// <summary>
@@ -638,9 +662,10 @@ namespace GameStartStopService
 
         private bool CloseEventAction(CtrlType sig)
         {
+            exit = true;
             GameMenu.KillMenu();
             GameStarter.KillGame();
-            return true;
+            return exit;
         }
         #endregion
 

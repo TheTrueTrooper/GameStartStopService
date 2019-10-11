@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using GameStartAndStopPipeClientNS;
 using System.Reflection;
 using System.IO.Pipes;
 using System.IO;
@@ -13,6 +12,7 @@ using RL8000_NFCReader;
 using RL8000_NFCReader.MifareClassicEvents;
 using RL8000_NFCReader.NFCCardTypes;
 using RL8000_NFCReader.MifareClassicControlEnums;
+using ServicePipeLine;
 
 namespace TestClientConsole
 {
@@ -84,26 +84,42 @@ namespace TestClientConsole
 
             //Console.ReadKey();
             #endregion
+            #region CardTesting
+            //RL8000_NFC CardReader = new RL8000_NFC();
+            //CardReader.MifareClassicISO1443ACardDetectedEvent += CardDetected;
 
-            RL8000_NFC CardReader = new RL8000_NFC();
-            CardReader.MifareClassicISO1443ACardDetectedEvent += CardDetected;
 
+            //Console.ReadKey();
+            #endregion
+            //SlaveSocketClient Server = new SlaveSocketClient("127.0.0.1");
 
+            JSONSocketClient Client = new JSONSocketClient("127.0.0.1");
+            Client.MessageReceivedHandle += Test;
+            //Client.MessageReceivedHandle += MessageReciecived;
+            Console.WriteLine(Client.TransmitJSONCommand<string, string>(new JSONAction<string>() { ActionName = "Do Something", ActionData = "sadfsa" }));
             Console.ReadKey();
         }
 
-        static void CardDetected(object sender, MifareClassicISO1443ACardDetectedEventArg e)
+        private static JSONResponse<dynamic> Test(JSONAction<dynamic> Message)
         {
-            Console.WriteLine("Card Detected");
-            Console.WriteLine($"Card Info:\n\tAir Protocol:{e.CardInfo.AirProtocalID}\n\tAntennaID:{e.CardInfo.AntennaID}\n\tDSFID:{e.CardInfo.DSFID}\n\tTagID:{e.CardInfo.TagID}\n\tUID:{BitConverter.ToString(e.CardInfo.UID, 0, e.CardInfo.UIDlen)}");
-            ISO1443A_MifareClassic_NFCCard Card = e.Reader.ConnectAs_ISO14443A_MifareClassic_NFC(e.CardInfo);
-            Card.Athenthicate(0, new byte[6] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }, KeyTypes.KeyA);
-            Console.WriteLine("Successfuly athenticated block 0.");
-            Console.WriteLine($"{BitConverter.ToString(Card.ReadBlock(0))}");
-            Card.Athenthicate(5, new byte[6] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }, KeyTypes.KeyA);
-            Card.WriteValue(5, 500);
-            Console.WriteLine($"{BitConverter.ToString(Card.ReadBlock(5))}");
-            Console.WriteLine($"{Card.ReadValue(5)}");
+            Console.WriteLine($"MessageReceived:{Message}");
+            return new JSONResponse<dynamic>() { ActionName = Message.ActionName, ActionData = "Test", RequestStatus = JSONResponseStatus.Success };
         }
+
+        #region CardTesting
+        //static void CardDetected(object sender, MifareClassicISO1443ACardDetectedEventArg e)
+        //{
+        //    Console.WriteLine("Card Detected");
+        //    Console.WriteLine($"Card Info:\n\tAir Protocol:{e.CardInfo.AirProtocalID}\n\tAntennaID:{e.CardInfo.AntennaID}\n\tDSFID:{e.CardInfo.DSFID}\n\tTagID:{e.CardInfo.TagID}\n\tUID:{BitConverter.ToString(e.CardInfo.UID, 0, e.CardInfo.UIDlen)}");
+        //    ISO1443A_MifareClassic_NFCCard Card = e.Reader.ConnectAs_ISO14443A_MifareClassic_NFC(e.CardInfo);
+        //    Card.Athenthicate(0, new byte[6] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }, KeyTypes.KeyA);
+        //    Console.WriteLine("Successfuly athenticated block 0.");
+        //    Console.WriteLine($"{BitConverter.ToString(Card.ReadBlock(0))}");
+        //    Card.Athenthicate(5, new byte[6] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }, KeyTypes.KeyA);
+        //    Card.WriteValue(5, 500);
+        //    Console.WriteLine($"{BitConverter.ToString(Card.ReadBlock(5))}");
+        //    Console.WriteLine($"{Card.ReadValue(5)}");
+        //}
+        #endregion
     }
 }

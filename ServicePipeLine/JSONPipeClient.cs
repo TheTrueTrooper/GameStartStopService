@@ -86,7 +86,7 @@ namespace ServicePipeLine
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="Package"></param>
-        void SendCommandDataPackage<T>(PipeJSONAction<T> Package)
+        void SendCommandDataPackage<T>(JSONAction<T> Package)
         {
             Tx.WriteLine(Package.ToString());
             Tx.Flush();
@@ -98,7 +98,7 @@ namespace ServicePipeLine
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="Package"></param>
-        void SendResponseDataPackage<T>(PipeJSONResponse<T> Package)
+        void SendResponseDataPackage<T>(JSONResponse<T> Package)
         {
             Tx.WriteLine(Package.ToString());
             Tx.Flush();
@@ -110,7 +110,7 @@ namespace ServicePipeLine
         /// </summary>
         /// <typeparam name="T">A templated Returns Data Type</typeparam>
         /// <returns>A request run that has run over the line</returns>
-        PipeJSONAction<T> ListenForCommand<T>()
+        JSONAction<T> ListenForCommand<T>()
         {
             while (Rx.Peek() == 0);
             return GetCommand<T>();
@@ -121,9 +121,9 @@ namespace ServicePipeLine
         /// </summary>
         /// <typeparam name="T">A templated Returns Data Type</typeparam>
         /// <returns>A Command has run over the line</returns>
-        PipeJSONAction<T> GetCommand<T>()
+        JSONAction<T> GetCommand<T>()
         {
-            return PipeJSONAction<T>.FromString(Rx.ReadLine());
+            return JSONAction<T>.FromString(Rx.ReadLine());
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace ServicePipeLine
         /// </summary>
         /// <typeparam name="T">A templated Returns Data Type</typeparam>
         /// <returns>A reponse has run over the line</returns>
-        PipeJSONResponse<T> ListenForResponse<T>()
+        JSONResponse<T> ListenForResponse<T>()
         {
             while (Rx.Peek() == 0);
             return GetResponse<T>();
@@ -142,36 +142,36 @@ namespace ServicePipeLine
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        PipeJSONResponse<T> GetResponse<T>()
+        JSONResponse<T> GetResponse<T>()
         {
             string Line = Rx.ReadLine();
-            return PipeJSONResponse<T>.FromString(Line);
+            return JSONResponse<T>.FromString(Line);
         }
 
-        public PipeJSONResponse<TResult> SendCommandRequest<Tin, TResult>(PipeJSONAction<Tin> Package)
+        public JSONResponse<TResult> SendCommandRequest<Tin, TResult>(JSONAction<Tin> Package)
         {
             SendCommandDataPackage(Package);
             return ListenForResponse<TResult>();
         }
 
-        public void ProcessRequest<Tin, TResult>(Func<PipeJSONAction<Tin>, PipeJSONResponse<TResult>> Process)
+        public void ProcessRequest<Tin, TResult>(Func<JSONAction<Tin>, JSONResponse<TResult>> Process)
         {
-            PipeJSONAction<Tin> Request = ListenForCommand<Tin>();
-            PipeJSONResponse<TResult> Result = Process.Invoke(Request);
+            JSONAction<Tin> Request = ListenForCommand<Tin>();
+            JSONResponse<TResult> Result = Process.Invoke(Request);
             SendResponseDataPackage(Result);
         }
 
-        public void ProcessRequest<Tin, TResult>(Func<IPipeJSONAction, IPipeJSONResponse> Processe)
+        public void ProcessRequest<Tin, TResult>(Func<IJSONAction, IJSONResponse> Processe)
         {
-            PipeJSONAction<Tin> Request = ListenForCommand<Tin>();
-            PipeJSONResponse<TResult> Result = (PipeJSONResponse<TResult>)Processe.Invoke(Request);
+            JSONAction<Tin> Request = ListenForCommand<Tin>();
+            JSONResponse<TResult> Result = (JSONResponse<TResult>)Processe.Invoke(Request);
             SendResponseDataPackage(Result);
         }
 
-        public void ProcessRequest(Func<PipeJSONAction<dynamic>, PipeJSONResponse<dynamic>> Process)
+        public void ProcessRequest(Func<JSONAction<dynamic>, JSONResponse<dynamic>> Process)
         {
-            PipeJSONAction<dynamic> Request = ListenForCommand<dynamic>();
-            PipeJSONResponse<dynamic> Result = Process.Invoke(Request);
+            JSONAction<dynamic> Request = ListenForCommand<dynamic>();
+            JSONResponse<dynamic> Result = Process.Invoke(Request);
             SendResponseDataPackage(Result);
         }
 

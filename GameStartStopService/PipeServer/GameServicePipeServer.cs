@@ -24,9 +24,9 @@ namespace GameStartStopService
         internal PlayGameEvent PlayGameEvent;
 
         [PipeFunction("PlayGame")]
-        public PipeJSONResponse<PlayGameReturn> PlayGame(PipeJSONAction<PlayInput> This)
+        public JSONResponse<PlayGameReturn> PlayGame(JSONAction<PlayInput> This)
         {
-            PipeJSONResponse<PlayGameReturn> Return = new PipeJSONResponse<PlayGameReturn>() { ActionName = This.ActionName, RequestStatus = PipeJSONResponseStatus.Success };
+            JSONResponse<PlayGameReturn> Return = new JSONResponse<PlayGameReturn>() { ActionName = This.ActionName, RequestStatus = JSONResponseStatus.Success };
             //if (ArcadeGameStartAndStopService.MainConfig.ServerMode == ServerMode.NoServerDemoMode && ArcadeGameStartAndStopService.MainConfig.CardModeMode == CardModeMode.NoCardNeededDemoMode)
             //{
                 ArcadeGameStartAndStopService.Logger.WriteLog($"Play game called\nWith Data:\n{This}");
@@ -64,9 +64,9 @@ namespace GameStartStopService
         }
 
         [PipeFunction("CanPlayGame")]
-        public PipeJSONResponse<CanPlayReturn> CanPlayGame(PipeJSONAction<PlayInput> This)
+        public JSONResponse<CanPlayReturn> CanPlayGame(JSONAction<PlayInput> This)
         {
-            PipeJSONResponse<CanPlayReturn> Return = new PipeJSONResponse<CanPlayReturn>() { ActionName = This.ActionName, RequestStatus = PipeJSONResponseStatus.Success };
+            JSONResponse<CanPlayReturn> Return = new JSONResponse<CanPlayReturn>() { ActionName = This.ActionName, RequestStatus = JSONResponseStatus.Success };
             if (ArcadeGameStartAndStopService.MainConfig.ServerMode == ServerMode.NoServerDemoMode)
             {
                 ArcadeGameStartAndStopService.Logger.WriteLog($"Can play game called\nWith Data:\n{This}\n");
@@ -88,10 +88,10 @@ namespace GameStartStopService
         /// <param name="This">object should be null</param>
         /// <returns></returns>
         [PipeFunction("GetGames")]
-        public PipeJSONResponse<GetMachineGamesReturn> GetGames(PipeJSONAction<object> This)
+        public JSONResponse<GetMachineGamesReturn> GetGames(JSONAction<object> This)
         {
             ArcadeGameStartAndStopService.Logger.WriteLog($"Get Games was called\nWith Data:\n{This}\n");
-            PipeJSONResponse<GetMachineGamesReturn> Return = new PipeJSONResponse<GetMachineGamesReturn>() { ActionData = new GetMachineGamesReturn(), ActionName = This.ActionName, RequestStatus = PipeJSONResponseStatus.Success };
+            JSONResponse<GetMachineGamesReturn> Return = new JSONResponse<GetMachineGamesReturn>() { ActionData = new GetMachineGamesReturn(), ActionName = This.ActionName, RequestStatus = JSONResponseStatus.Success };
             Return.ActionData.VRMachineGames = ArcadeGameStartAndStopService.GameConfig.GamesRaw;
             ArcadeGameStartAndStopService.Logger.WriteLog($"Retuning to get games with:\n{Return}\n");
             return Return;

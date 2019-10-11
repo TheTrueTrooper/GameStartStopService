@@ -31,9 +31,9 @@ namespace ServicePipeLine
             }
         }
 
-        public JSONPipeServer(string PipeServerName)
+        public JSONPipeServer(string PipeServerName, int MaxNumberOfConnections = 1)
         {
-            ServicePipe = new NamedPipeServerStream(PipeServerName, PipeDirection.InOut, 1, PipeTransmissionMode.Message);
+            ServicePipe = new NamedPipeServerStream(PipeServerName, PipeDirection.InOut, MaxNumberOfConnections, PipeTransmissionMode.Message);
             this.PipeServerName = PipeServerName;
             Rx = new StreamReader(ServicePipe);
             Tx = new StreamWriter(ServicePipe);
@@ -52,59 +52,59 @@ namespace ServicePipeLine
             ServicePipe.Disconnect();
         }
 
-        void SendCommandDataPackage<T>(PipeJSONAction<T> Package)
+        void SendCommandDataPackage<T>(JSONAction<T> Package)
         {
             Tx.WriteLine(Package.ToString());
             Tx.Flush();
             ServicePipe.WaitForPipeDrain();
         }
 
-        internal void SendResponseDataPackage<T>(PipeJSONResponse<T> Package)
+        internal void SendResponseDataPackage<T>(JSONResponse<T> Package)
         {
             Tx.WriteLine(Package.ToString());
             Tx.Flush();
             ServicePipe.WaitForPipeDrain();
         }
 
-        internal PipeJSONAction<T> ListenForCommand<T>()
+        internal JSONAction<T> ListenForCommand<T>()
         {
             while (Rx.Peek() == 0);
             return GetCommand<T>();
         }
 
-        PipeJSONAction<T> GetCommand<T>()
+        JSONAction<T> GetCommand<T>()
         {
-            return PipeJSONAction<T>.FromString(Rx.ReadLine());
+            return JSONAction<T>.FromString(Rx.ReadLine());
         }
 
-        PipeJSONResponse<T> ListenForResponse<T>()
+        JSONResponse<T> ListenForResponse<T>()
         {
             while (Rx.Peek() == 0);
             return GetResponse<T>();
         }
 
-        PipeJSONResponse<T> GetResponse<T>()
+        JSONResponse<T> GetResponse<T>()
         {
-            return PipeJSONResponse<T>.FromString(Rx.ReadLine());
+            return JSONResponse<T>.FromString(Rx.ReadLine());
         }
 
-        public PipeJSONResponse<TResult> SendCommandRequest<Tin, TResult>(PipeJSONAction<Tin> Package)
+        public JSONResponse<TResult> SendCommandRequest<Tin, TResult>(JSONAction<Tin> Package)
         {
             SendCommandDataPackage(Package);
             return ListenForResponse<TResult>();
         }
 
-        public void ProcessRequest<Tin, TResult>(Func<PipeJSONAction<Tin>, PipeJSONResponse<TResult>> Process)
+        public void ProcessRequest<Tin, TResult>(Func<JSONAction<Tin>, JSONResponse<TResult>> Process)
         {
-            PipeJSONAction<Tin> Request = ListenForCommand<Tin>();
-            PipeJSONResponse<TResult> Result = Process.Invoke(Request);
+            JSONAction<Tin> Request = ListenForCommand<Tin>();
+            JSONResponse<TResult> Result = Process.Invoke(Request);
             SendResponseDataPackage(Result);
         }
 
-        public void ProcessRequest(Func<PipeJSONAction<dynamic>, PipeJSONResponse<dynamic>> Process)
+        public void ProcessRequest(Func<JSONAction<dynamic>, JSONResponse<dynamic>> Process)
         {
-            PipeJSONAction<dynamic> Request = ListenForCommand<dynamic>();
-            PipeJSONResponse<dynamic> Result = Process.Invoke(Request);
+            JSONAction<dynamic> Request = ListenForCommand<dynamic>();
+            JSONResponse<dynamic> Result = Process.Invoke(Request);
             SendResponseDataPackage(Result);
         }
 

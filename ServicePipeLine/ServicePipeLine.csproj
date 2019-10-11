@@ -46,15 +46,18 @@
   <ItemGroup>
     <Compile Include="InstancedMethodInfo.cs" />
     <Compile Include="JSONRequestClientPipe.cs" />
+    <Compile Include="JSONServerSocket.cs" />
+    <Compile Include="JSONSocketServer.cs" />
     <Compile Include="PipeFunctionAttribute.cs" />
-    <Compile Include="PipeJSONAction.cs" />
-    <Compile Include="PipeJSONActionRoot.cs" />
-    <Compile Include="PipeJSONResponse.cs" />
-    <Compile Include="PipeJSONResponseRoot.cs" />
+    <Compile Include="JSONAction.cs" />
+    <Compile Include="JSONActionRoot.cs" />
+    <Compile Include="JSONResponse.cs" />
+    <Compile Include="JSONResponseRoot.cs" />
     <Compile Include="JSONRequestServerPipe.cs" />
     <Compile Include="JSONPipeClient.cs" />
     <Compile Include="JSONPipeServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="JSONSocketClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
