@@ -93,17 +93,16 @@ namespace TestClientConsole
             #endregion
             //SlaveSocketClient Server = new SlaveSocketClient("127.0.0.1");
 
-            JSONSocketClient Client = new JSONSocketClient("127.0.0.1");
-            Client.MessageReceivedHandle += Test;
-            //Client.MessageReceivedHandle += MessageReciecived;
-            Console.WriteLine(Client.TransmitJSONCommand<string, string>(new JSONAction<string>() { ActionName = "Do Something", ActionData = "sadfsa" }));
-            Console.ReadKey();
-        }
+            SlaveClient Client = new SlaveClient("127.0.0.1");
+            SlaveClient Client2 = new SlaveClient("127.0.0.1");
+            SlaveClient Client3 = new SlaveClient("127.0.0.1");
 
-        private static JSONResponse<dynamic> Test(JSONAction<dynamic> Message)
-        {
-            Console.WriteLine($"MessageReceived:{Message}");
-            return new JSONResponse<dynamic>() { ActionName = Message.ActionName, ActionData = "Test", RequestStatus = JSONResponseStatus.Success };
+            Thread.Sleep(2000);
+            Console.WriteLine(Client2.NotifyServerOfTappedCard());
+            Thread.Sleep(1000);
+            Console.WriteLine(Client3.NotifyServerOfTappedCard());
+            Thread.Sleep(5000);
+            Console.WriteLine(Client3.NotifyServerOfGamesEnd());
         }
 
         #region CardTesting

@@ -6,7 +6,7 @@
   "GameStarterMode": "SingleGameStarter",
   "ServerMode": "NoServerDemoMode",
   "CardModeMode": "NoCardNeededDemoMode",
-  "MasterStarterMasterLoc": null,
+  "MasterStarterMasterLoc": "127.0.0.1",
   "ServerCredential": {
     "UserName": "machine1@vrstore1.com",
     "Password": "Abcd1234@"

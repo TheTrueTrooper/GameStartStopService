@@ -12,7 +12,7 @@ namespace ServicePipeLine
     public delegate void ActionOnConnectLocal(JSONServerSocket e);
     public delegate void ActionOnConnectGlobal(JSONSocketServer e);
 
-    public class JSONSocketServer
+    public class JSONSocketServer : IDisposable
     {
         Socket ListenerSocket;
 
@@ -32,8 +32,27 @@ namespace ServicePipeLine
         public ActionOnConnectGlobal GlobalActionOnConnectHandle;
 
         MessageReceived _SocketMessageRecieved;
+        ServerDisconnect _OnDisconnect;
 
-        public MessageReceived SocketMessageRecieved {
+        public ServerDisconnect OnDisconnect
+        {
+            get
+            {
+                return _OnDisconnect;
+            }
+            set
+            {
+                _OnDisconnect = value;
+                lock (ClientConnections)
+                    foreach (JSONServerSocket S in ClientConnections)
+                        S.DisconnectHandle = value;
+                if (_OnDisconnect == null)
+                    _OnDisconnect += OnDisconnectDefualt;
+            }
+        }
+
+        public MessageReceived SocketMessageRecieved
+        {
             get
             {
                 return _SocketMessageRecieved;
@@ -49,14 +68,22 @@ namespace ServicePipeLine
 
         bool Listening = true;
 
-        public JSONSocketServer()
+        public JSONSocketServer(int Port = 9999)
         {
-            IPEndPoint IP = new IPEndPoint(IPAddress.Any, 9999);
+            IPEndPoint IP = new IPEndPoint(IPAddress.Any, Port);
             ListenerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             ListenerSocket.Bind(IP);
 
+            _OnDisconnect += OnDisconnectDefualt;
+
             ListenerThread = new Thread(new ParameterizedThreadStart(ListenLoop));
             ListenerThread.Start(this);
+        }
+
+        private void OnDisconnectDefualt(JSONServerSocket DisconnectingEntity)
+        {
+            lock (ClientConnections)
+                ClientConnections.Remove(DisconnectingEntity);
         }
 
         static void ListenLoop(object obj)
@@ -68,7 +95,7 @@ namespace ServicePipeLine
                 lock(This.ListenerSocket)
                     This.ListenerSocket.Listen(10);
                 lock (This)
-                    This.ClientConnections.Add(new JSONServerSocket(This.ListenerSocket, This._SocketMessageRecieved));
+                    This.ClientConnections.Add(new JSONServerSocket(This.ListenerSocket, This._SocketMessageRecieved, This._OnDisconnect));
                 lock (This)
                     if(This.ActionOnConnectHandle != null)
                         This.ActionOnConnectHandle?.Invoke(This.ClientConnections.Last());
@@ -82,11 +109,15 @@ namespace ServicePipeLine
         {
             while(ClientConnections.Count() == 0);
         }
-    }
 
-    public class JSONSocketServer<T> : JSONSocketServer
-    {
-
+        public void Dispose()
+        {
+            Listening = false;
+            foreach(JSONServerSocket S in ClientConnections)
+            {
+                S.Dispose();
+            }
+        }
     }
 }
 

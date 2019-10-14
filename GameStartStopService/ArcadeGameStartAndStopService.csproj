@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{222D8508-3F07-4357-A5D7-DED2C0D95190}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>GameStartStopService</RootNamespace>
     <AssemblyName>GameStartStopService</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
@@ -117,9 +117,11 @@
     <Compile Include="ServerClient\ClientModels\PlayGameReturn.cs" />
     <Compile Include="ServerClient\ClientModels\CustomerData.cs" />
     <Compile Include="ServerClient\ServerClient.cs" />
-    <Compile Include="SocketServer\MasterSocket.cs" />
-    <Compile Include="SocketServer\MasterSocketServer.cs" />
-    <Compile Include="SocketServer\SlaveSocketClient.cs" />
+    <Compile Include="SocketServer\MasterServer.cs" />
+    <Compile Include="SocketServer\SlaveClient.cs" />
+    <Compile Include="SocketServer\SocketModels\PlayGameModel.cs" />
+    <Compile Include="SocketServer\SocketModels\SlaveInfo.cs" />
+    <Compile Include="UtilitiesFolder\CanPlayTransactionReturn.cs" />
     <Compile Include="UtilitiesFolder\CardManagerTransactionExtentions.cs" />
     <Compile Include="UtilitiesFolder\CardTransationException.cs" />
     <Compile Include="UtilitiesFolder\CardTransationExceptionLocation.cs" />
@@ -176,6 +178,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReadMe.txt" />
     <Content Include="VRRcadeServiceIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

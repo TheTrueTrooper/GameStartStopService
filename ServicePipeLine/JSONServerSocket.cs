@@ -12,7 +12,9 @@ namespace ServicePipeLine
 {
     public delegate JSONResponse<dynamic> MessageReceived(JSONAction<dynamic> Message);
 
-    public class JSONServerSocket
+    public delegate void ServerDisconnect(JSONServerSocket DisconnectingEntity);
+
+    public class JSONServerSocket : IDisposable
     {
         Socket ClientSocket;
 
@@ -24,11 +26,20 @@ namespace ServicePipeLine
 
         internal MessageReceived MessageReceivedHandle;
 
-        internal JSONServerSocket(Socket ListerSocket, MessageReceived MessageReceivedHandle)
+        internal ServerDisconnect DisconnectHandle;
+
+        bool Disconnected;
+
+        public TimeSpan TimeOut;
+
+        internal JSONServerSocket(Socket ListerSocket, MessageReceived MessageReceivedHandle, ServerDisconnect DisconnectHandle)
         {
+            TimeOut = TimeSpan.FromSeconds(15);
+
             ClientSocket = ListerSocket.Accept();
 
             this.MessageReceivedHandle = MessageReceivedHandle;
+            this.DisconnectHandle = DisconnectHandle;
 
             RxThread = new Thread(new ParameterizedThreadStart(ReadThreadLoop));
 
@@ -37,72 +48,71 @@ namespace ServicePipeLine
 
         private static void ReadThreadLoop(object obj)
         {
+            const int BufferSize = 1024;
+
             JSONServerSocket This = (JSONServerSocket)obj;
-            using (MemoryStream MS = new MemoryStream())
-            using (StreamReader Reader = new StreamReader(MS))
+
+            string CurrentMessage = "";
+            while (!This.Disconnected)
             {
-                string CurrentMessage = "";
-                while (true)
+                byte[] ReceiveDataBuffer = new byte[BufferSize];
+                int ReceivedDataLength = 0;
+
+                try
                 {
-                    byte[] ReceiveDataBuffer = new byte[24];
-                    int ReceivedDataLength = 0;
-
                     ReceivedDataLength = This.ClientSocket.Receive(ReceiveDataBuffer);
+                }
+                catch
+                {
+                    This?.ClientSocket?.Disconnect(false);
+                    This.Disconnected = true;
+                    This.DisconnectHandle?.Invoke(This);
+                }
 
-                    // why bother to Deserialize?
-                    // the last postion to use;
-                    long LastPos = 0;
-                    // a serailization fail reset point
-                    //long CurrentTryPos = 0;
-                    try
+                CurrentMessage += Encoding.Default.GetString(ReceiveDataBuffer.Where(x => x != 0).ToArray());
+
+                if (CurrentMessage.Count() > 0 && CurrentMessage.Last() == '\n')
+                {
+                    JSONResponse<dynamic> Response = JSONResponse<dynamic>.FromString(CurrentMessage);
+                    lock (This)
                     {
-                         
-
-                        LastPos = MS.Position;
-
-                        MS.Seek(0, SeekOrigin.End);
-
-                        MS.Write(ReceiveDataBuffer, 0, ReceivedDataLength);
-
-                        MS.Position = LastPos;
-
-                        CurrentMessage += Reader.ReadLine();
-                    }
-                    catch { }
-
-                    if(CurrentMessage.Count() % 24 != 0 || CurrentMessage.Last() == '\n')
-                    {
-                        JSONResponse<dynamic> Response = JSONResponse<dynamic>.FromString(CurrentMessage);
-                        lock (This)
+                        if (Response.RequestStatus == JSONResponseStatus.NotPresent)
                         {
                             if (This.MessageReceivedHandle != null)
-                            {
-                                if (Response.RequestStatus == JSONResponseStatus.NotPresent)
-                                    This.TransmitJSONResponse(This.MessageReceivedHandle?.Invoke(new JSONAction<dynamic>() { ActionName = Response.ActionName, ActionData = Response.ActionDataObj }));
-                                else
-                                    lock (This)
-                                        This.LastResponse = Response;
-                            }
+                                This.TransmitJSONResponse(This.MessageReceivedHandle?.Invoke(new JSONAction<dynamic>() { ActionName = Response.ActionName, ActionData = Response.ActionDataObj }));
                         }
+                        else
+                            lock (This)
+                                This.LastResponse = Response;
                         CurrentMessage = "";
                     }
                 }
             }
+
         }
 
         public JSONResponse<J> TransmitJSONCommand<T, J>(JSONAction<T> JSONAction)
         {
             JSONResponse<J> Return;
-            ClientSocket.Send(Encoding.ASCII.GetBytes(JSONAction.ToString()));
-            while (LastResponse == null);
-            Return = (JSONResponse<J>)LastResponse.ResponseDynamicAutoCast(typeof(J));
+            ClientSocket.Send(Encoding.ASCII.GetBytes($"{JSONAction.ToString()}\n"));
+            Task Task = Task.Run(() => { while (LastResponse == null) ; });
+            if (Task.Wait(TimeOut))
+                Return = (JSONResponse<J>)LastResponse.ResponseDynamicAutoCast(typeof(J));
+            else
+                Return = (JSONResponse<J>)(new JSONResponse<dynamic> { ActionName = JSONAction.ActionName, ActionData = JSONAction.ActionData, RequestStatus = JSONResponseStatus.TimeOut, Message = $"The operation has timed out after {TimeOut}" }).ResponseDynamicAutoCast(typeof(J));
             LastResponse = null;
             return Return;
         }
 
-        void TransmitJSONResponse<T>(JSONResponse<T> JSONAction)
+        void TransmitJSONResponse<T>(JSONResponse<T> JSONResponse)
         {
-            ClientSocket.Send(Encoding.ASCII.GetBytes(JSONAction.ToString()));
+            ClientSocket.Send(Encoding.ASCII.GetBytes($"{JSONResponse.ToString()}\n"));
+        }
+
+        public void Dispose()
+        {
+            Disconnected = true;
+            ClientSocket.Dispose();
         }
     }
 }

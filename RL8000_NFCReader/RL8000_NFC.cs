@@ -18,7 +18,7 @@ namespace RL8000_NFCReader
         internal UIntPtr CardTnventoryListHandle { get=> _CardTnventoryListHandle; }
         UIntPtr _CardTnventoryListHandle;
 
-        ISO1443A_MifareClassic_NFCCard Card;
+        public ISO1443A_MifareClassic_NFCCard Card { private set; get; }
 
         Thread Listener;
 

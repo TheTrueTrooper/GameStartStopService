@@ -8,21 +8,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GameStartStopService.TheServerClient.ClientModels;
+using GameStartStopService.SocketServer;
+using GameStartStopService.SocketServer.SocketModels;
 
 namespace GameStartStopService
 {
     public partial class AttendantConsole : Form
     {
-        static string GUIDGameSelection;
+        internal static string GUIDGameSelection;
 
-        public AttendantConsole()
+        MasterServer OwningServer;
+
+        List<string> RunningMachines = new List<string>();
+
+        internal AttendantConsole(MasterServer Owner)
         {
             InitializeComponent();
 
             UpdateGameSelectorList();
+            BuildMachineList();
+            OwningServer = Owner;
         }
-        
-        public void UpdateGameSelectorList()
+
+        void BuildMachineList()
+        {
+            lock (MasterServer.Connections)
+                foreach (KeyValuePair<string, SlaveInfo> Slave in MasterServer.Connections)
+                {
+                    CheLisBox_ConnectedMachines.Items.Add(Slave.ToString());
+                }
+        }
+
+        void UpdateGameSelectorList()
         {
             LisBox_GameSelectionList.Items.Clear();
             foreach(Games Games in ArcadeGameStartAndStopService.GameConfig.GamesRaw)
@@ -52,16 +69,108 @@ namespace GameStartStopService
             GUIDGameSelection = GUID.Remove(GUID.Count() - 1);
 
             Games Game = ArcadeGameStartAndStopService.GameConfig.GamesRaw.Find(x => x.GUID == GUIDGameSelection);
-            PicBox_GameImage.ImageLocation = Game.ImagePath;
+            PicBox_GameImage.ImageLocation = $"{Environment.CurrentDirectory}\\VRMenu\\GameSelector_Data\\StreamingAssets\\{Game.ImagePath}.png";
             RicTexBox_Description.Text = Game.Description;
             Lab_GameName.Text = $"{Game.Name}:{Game.GUID}";
             Lab_Cost.Text = $"Cost:{Game.CostToPlay}";
             Lab_PlayTime.Text = $"PlayTime(ms):{Game.PlayTime}";
+
+            OwningServer.ChangeGame(GUIDGameSelection);
         }
 
-        private void MachineCheckHeartBeat_Tick(object sender, EventArgs e)
+        internal void AddToMachineList(SlaveInfo Slave)
         {
+            lock (MasterServer.Connections)
+                try
+                {
+                        Invoke(new Action(() => CheLisBox_ConnectedMachines.Items.Add(Slave.ToString())));
+                }
+                catch { }
+        }
 
+        internal void RemoveFromMachineList(SlaveInfo Slave)
+        {
+            lock (MasterServer.Connections)
+                try
+                {
+                    Invoke(new Action(() => CheLisBox_ConnectedMachines.Items.Remove(Slave.ToString())));
+                }
+                catch { }
+        }
+
+        internal void MarkGameAsStoped(SlaveInfo Slave)
+        {
+            lock (MasterServer.Connections)
+                try
+                {
+                    Invoke(new Action(() =>
+                    {
+                        RunningMachines.Remove(Slave.ToString());
+                        LisBox_RunningMachines.Items.Remove(Slave.ToString());
+                        if(RunningMachines.Count == 0)
+                        {
+                            Bu_Start.Enabled = true;
+                            Bu_Stop.Enabled = false;
+                        }
+                    }));
+                }
+                catch { }
+        }
+
+        internal void ActivateForTappedCard(SlaveInfo Slave)
+        {
+            lock (MasterServer.Connections)
+                try
+                {
+                    Invoke(new Action(() => CheLisBox_ConnectedMachines.SetItemChecked(CheLisBox_ConnectedMachines.Items.IndexOf(Slave.ToString()), true)));
+                }
+                catch { }
+        }
+
+        public void Log(string Message)
+        {
+            try
+            {
+                Invoke(new Action(() => { RicTexBox_Log.AppendText($"{Message}\n"); RicTexBox_Log.SelectionStart = RicTexBox_Log.Text.Length; RicTexBox_Log.ScrollToCaret(); }));
+            }
+            catch { }
+            ArcadeGameStartAndStopService.Logger.WriteLog(Message);
+        }
+
+        private void Bu_Start_Click(object sender, EventArgs e)
+        {
+            RunningMachines = new List<string>();
+            foreach (string Obj in CheLisBox_ConnectedMachines.CheckedItems)
+            {
+                LisBox_RunningMachines.Items.Add(Obj);
+                RunningMachines.Add(Obj);
+            }
+            OwningServer.StartGames(RunningMachines, GUIDGameSelection);
+            Bu_Start.Enabled = false;
+            Bu_Stop.Enabled = true;
+        }
+
+        private void Bu_Stop_Click(object sender, EventArgs e)
+        {
+            OwningServer.StopGames(RunningMachines);
+            RunningMachines = new List<string>();
+            LisBox_RunningMachines.Items.Clear();
+            Bu_Start.Enabled = true;
+            Bu_Stop.Enabled = false;
+        }
+
+        private void CheLisBox_ConnectedMachines_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.NewValue == CheckState.Unchecked)
+            {
+                OwningServer.NotifyOfUncheck(CheLisBox_ConnectedMachines.Items[e.Index].ToString());
+                Log($"{CheLisBox_ConnectedMachines.Items[e.Index].ToString()} Has been unchecked please ask them to tap again for them to be charged for the ride");
+            }
+        }
+
+        private void AttendantConsole_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Bu_Stop_Click(sender, e);
         }
     }
 

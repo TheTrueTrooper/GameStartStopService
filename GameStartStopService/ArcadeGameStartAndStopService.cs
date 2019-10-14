@@ -24,6 +24,8 @@ using GameStartStopService.PipeServer.Events;
 using RL8000_NFCReader;
 using RL8000_NFCReader.MifareClassicEvents;
 using GameStartStopService.PipeServer.Models;
+using GameStartStopService.SocketServer;
+using GameStartStopService.SocketServer.SocketModels;
 
 namespace GameStartStopService
 {
@@ -68,9 +70,9 @@ namespace GameStartStopService
 
         const string ServerName = "GameStartAndStopServicePipe";
 
-        static GameInstancer GameStarter;
+        internal static GameInstancer GameStarter;
 
-        static GameMenu GameMenu;
+        internal static GameMenu GameMenu;
 
         static PasswordCorrector PasswordCorrector;
 
@@ -84,9 +86,13 @@ namespace GameStartStopService
         static GameConfigEditor GameConfigEditorInstance;
         static GameSelectorEditor GameSelectorEditorInstance;
 
-        static AttendantConsole AttendantConsole;
+        internal static ServerClient TheServerClient;
 
-        static ServerClient TheServerClient;
+        static MasterServer MasterServer;
+        static SlaveClient SlaveClient;
+
+        internal static string LastCardGUID;
+        internal static int? LastCheckKey;
 
         static bool Disabled = false;
         bool exit = false;
@@ -94,7 +100,7 @@ namespace GameStartStopService
         //depreciated
         //static ACR122UManager CardManger = null;
 
-        static RL8000_NFC NFCReader;
+        internal static RL8000_NFC NFCReader;
 
         static int MenuDisableLocation = 0;
 
@@ -262,7 +268,7 @@ namespace GameStartStopService
 
             GameStarter = new GameInstancer(GameConfig);
 
-            if (!MenuRunning)
+            if (MainConfig.StarterMode == GameStartMode.SingleGameStarter == !MenuRunning)
                 GameMenu.StartMenu();
 
             GameStarter.GameIsStartingEvent += GameInstancerStartingGame;
@@ -285,9 +291,16 @@ namespace GameStartStopService
                 {}
             }
 
-            AttendantConsole = new AttendantConsole();
+            if (MainConfig.StarterMode == GameStartMode.MultiSocketStarterMaster)
+            {
+                MasterServer = new MasterServer();
+                MasterServer.ShowConsole();
+            }
 
-            AttendantConsole.Show();
+            if(MainConfig.StarterMode == GameStartMode.MultiSocketStarterSlave)
+            {
+                SlaveClient = new SlaveClient(MainConfig.MasterStarterMasterLoc);
+            }
 
             NoIc_GameStarterStopper.ContextMenuStrip = BuildMenu();
             NoIc_GameStarterStopper.Visible = true;
@@ -318,74 +331,52 @@ namespace GameStartStopService
         #endregion
 
         #region GameStartModes
-        void StartGameAsSingleGameStarter(MifareClassicISO1443ACardDetectedEventArg e)
+        void CardTapAsSingleGameStarter(MifareClassicISO1443ACardDetectedEventArg e)
         {
             if (MainConfig.ServerMode == ServerMode.NoServerDemoMode || MainConfig.CardModeMode == CardModeMode.NoCardNeededDemoMode)
             {
-                Logger.WriteLog($"\nCard Detected Serverless Demo Started {DateTime.UtcNow}\nCardInfo\n\tAir Protocol:{e.CardInfo.AirProtocalID}\n\tAntennaID:{e.CardInfo.AntennaID}\n\tTagID:{e.CardInfo.TagID}\n\tUID:{BitConverter.ToString(e.CardInfo.UID, 0, e.CardInfo.UIDlen)}\n\tDSFID:{e.CardInfo.DSFID}");
+                Logger.WriteLog($"\nCard Detected starting in {MainConfig.ServerMode}:{MainConfig.CardModeMode} mode. Serverless Demo Started {DateTime.UtcNow}\nCardInfo\n\tAir Protocol:{e.CardInfo.AirProtocalID}\n\tAntennaID:{e.CardInfo.AntennaID}\n\tTagID:{e.CardInfo.TagID}\n\tUID:{BitConverter.ToString(e.CardInfo.UID, 0, e.CardInfo.UIDlen)}\n\tDSFID:{e.CardInfo.DSFID}");
                 GameMenu.NotifyOfCardTap();
             }
             else
             {
-                try
-                {
-                    //CardManger.CheckCardTransactionWithServer(TheServerClient);
-                    //CardManger.PlayGameTransactionWithServer(TheServerClient, GameGUID);
-
-                    try
-                    {
-                        Logger.WriteLog("Game service starting Game");
-                        GameStarter.StartGame(this, GameGUID);
-                    }
-                    catch
-                    {
-                        Logger.WriteLog("Game has failed to start\nPlease check your game config file.", LoggerWarringLevel.Danger);
-                    }
-                }
-                catch
-                {
-                    try
-                    {
-                        //byte Data;
-                        //CardManger.SetLEDandBuzzerControl(NFC_CardReader.ACR122U.ACR122U_LEDControl.AllOn, 20, 20, 5, NFC_CardReader.ACR122U.ACR122U_BuzzerControl.BuzzerOnT1And2Cycle, out Data);
-                        //CardManger.DisconnectToCard();
-                        Logger.WriteLog("Error reading card - Razing buzzer razed", LoggerWarringLevel.Warring);
-                    }
-                    catch
-                    {
-                        Logger.WriteLog("Error reading card - Razing buzzer razed", LoggerWarringLevel.Warring);
-                    }
-                }
+                GameMenu.NotifyOfCardTap();
             }
         }
 
-        void StartGameAsMultiSocketStarterMaster()
+        void CardTapAsMultiSocketStarterMaster(MifareClassicISO1443ACardDetectedEventArg e)
         {
-            throw new NotImplementedException();
+            Logger.WriteLog("Card tap detected but in MultiSocketStarterMaster. Tap has been ignored");
         }
 
-        void StartGameAsMultiSocketStarterSlave()
+        void CardTapAsMultiSocketStarterSlave(MifareClassicISO1443ACardDetectedEventArg e)
         {
-            throw new NotImplementedException();
-        }
-
-        void StartGameAsAttendantChargeDeskOnly()
-        {
-            try
+            if (MainConfig.ServerMode == ServerMode.NoServerDemoMode || MainConfig.CardModeMode == CardModeMode.NoCardNeededDemoMode)
             {
-                const string SuccessfullCharge = "Card was successfully charged.";
-                //ResponseInfo<CheckCardReturn, ResponseStatus> Return1 = CardManger.CheckCardTransactionWithServer(TheServerClient);
-                //ResponseInfo<PlayGameReturn, ResponseStatus> Return2 = CardManger.PlayGameTransactionWithServer(TheServerClient, GameGUID);
-                //Logger.WriteLog($"{SuccessfullCharge}\n{Return2.Message}");
-                MessageBox.Show(SuccessfullCharge);
+                Logger.WriteLog($"\nCard Detected starting in {MainConfig.ServerMode}:{MainConfig.CardModeMode} mode. Serverless Demo Started {DateTime.UtcNow}\nCardInfo\n\tAir Protocol:{e.CardInfo.AirProtocalID}\n\tAntennaID:{e.CardInfo.AntennaID}\n\tTagID:{e.CardInfo.TagID}\n\tUID:{BitConverter.ToString(e.CardInfo.UID, 0, e.CardInfo.UIDlen)}\n\tDSFID:{e.CardInfo.DSFID}");
+                SlaveClient.NotifyServerOfTappedCard();
             }
-            catch
+            else
             {
-                const string SuccessfullCharge = "Card was not charged please check card at nearest desk.";
-                Logger.WriteLog(SuccessfullCharge, LoggerWarringLevel.Warring);
-                MessageBox.Show(SuccessfullCharge);
+                CanPlayTransactionReturn Data = ArcadeGameStartAndStopService.NFCReader.Card.CanPlayGameTransactionWithServer(SlaveClient.GameGUID).Data;
+                if (Data.CanPlay)
+                {
+                    Logger.WriteLog($"\nCard Detected starting in {MainConfig.ServerMode}:{MainConfig.CardModeMode} mode. Serverless Demo Started {DateTime.UtcNow}\nCardInfo\n\tAir Protocol:{e.CardInfo.AirProtocalID}\n\tAntennaID:{e.CardInfo.AntennaID}\n\tTagID:{e.CardInfo.TagID}\n\tUID:{BitConverter.ToString(e.CardInfo.UID, 0, e.CardInfo.UIDlen)}\n\tDSFID:{e.CardInfo.DSFID}");
+                    ArcadeGameStartAndStopService.LastCardGUID = Data.CardGUID;
+                    ArcadeGameStartAndStopService.LastCheckKey = Data.NewCheckKey;
+                    SlaveClient.NotifyServerOfTappedCard();
+                }
+                else
+                {
+                    ArcadeGameStartAndStopService.LastCardGUID = null;
+                    ArcadeGameStartAndStopService.LastCheckKey = null;
+                }
             }
-            
+        }
+
+        void CardTapAsAttendantChargeDeskOnly()
+        {
+            Logger.WriteLog("Card tap detected but in AttendantChargeDeskOnly. Not Implemented Tap has been ignored");
         }
 
         #region SpecialCardTaps
@@ -400,7 +391,16 @@ namespace GameStartStopService
                 switch(MainConfig.StarterMode)
                 {
                     case GameStartMode.SingleGameStarter:
-                        StartGameAsSingleGameStarter(e);
+                        CardTapAsSingleGameStarter(e);
+                        break;
+                    case GameStartMode.MultiSocketStarterSlave:
+                        CardTapAsMultiSocketStarterSlave(e);
+                        break;
+                    case GameStartMode.MultiSocketStarterMaster:
+                        CardTapAsMultiSocketStarterMaster(e);
+                        break;
+                    case GameStartMode.AttendantChargeDeskOnly:
+                        CardTapAsAttendantChargeDeskOnly();
                         break;
                 }
             }
@@ -511,8 +511,16 @@ namespace GameStartStopService
             if (!exit)
             {
                 Logger.WriteLog($"GameInstancer - Game has Ended. Time Ended {e.time} Reason: {e.Reason}");
-                GameMenu.StartMenu();
-                Logger.WriteLog($"GameMenu - Game Menu has Started in response.");
+                if (MainConfig.StarterMode == GameStartMode.SingleGameStarter)
+                {
+                    GameMenu.StartMenu();
+                    Logger.WriteLog($"GameMenu - Game Menu has Started in response.");
+                }
+                else if (MainConfig.StarterMode == GameStartMode.MultiSocketStarterSlave)
+                {
+                    SlaveClient.NotifyServerOfGamesEnd();
+                    Logger.WriteLog($"GameMenu - Master Server has been notified.");
+                }
             }
         }
 
@@ -629,13 +637,19 @@ namespace GameStartStopService
             Logger.WriteLog($"Demo Started {DateTime.UtcNow} ");
             GameMenu.NotifyOfCardTap();
         }
+
+        private void OpenAttendantConsole_Click(object sender, EventArgs e)
+        {
+            MasterServer.ShowConsole();
+        }
         #endregion
 
         #region Utilities
         ContextMenuStrip BuildMenu()
         {
             ContextMenuStrip Menu = new ContextMenuStrip();
-            Menu.Items.Add("Set Active Game", null, new EventHandler(SetActiveGame_Click));
+            if (MainConfig.StarterMode == GameStartMode.MultiSocketStarterMaster)
+                Menu.Items.Add("Open Attendant Console", null, new EventHandler(OpenAttendantConsole_Click));
             Menu.Items.Add("Edit Server Credential", null, new EventHandler(EditServerCredential_Click));
             Menu.Items.Add("Config Service", null, new EventHandler(EditConfig_Click));
             Menu.Items.Add("Config Games", null, new EventHandler(EditGamesConfig_Click));

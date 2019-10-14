@@ -27,14 +27,14 @@ namespace GameStartStopService
         public JSONResponse<PlayGameReturn> PlayGame(JSONAction<PlayInput> This)
         {
             JSONResponse<PlayGameReturn> Return = new JSONResponse<PlayGameReturn>() { ActionName = This.ActionName, RequestStatus = JSONResponseStatus.Success };
-            //if (ArcadeGameStartAndStopService.MainConfig.ServerMode == ServerMode.NoServerDemoMode && ArcadeGameStartAndStopService.MainConfig.CardModeMode == CardModeMode.NoCardNeededDemoMode)
-            //{
+            if (ArcadeGameStartAndStopService.MainConfig.ServerMode == ServerMode.NoServerDemoMode || ArcadeGameStartAndStopService.MainConfig.CardModeMode == CardModeMode.NoCardNeededDemoMode)
+            {
                 ArcadeGameStartAndStopService.Logger.WriteLog($"Play game called\nWith Data:\n{This}");
                 Return.ActionData = new PlayGameReturn()
                 {
                     ActivationDate = DateTime.Now,
                     Comments = "machine purchase",
-                    //CheckNum = 0,
+                    CheckNum = 0,
                     Number = "",
                     IsActive = true,
                     IsDeleted = false,
@@ -51,13 +51,18 @@ namespace GameStartStopService
                 });
                 Task.Start();
 
-            //}
-            //else
-            //{
-            //    ArcadeGameStartAndStopService.Logger.WriteLog($"Play game called\nWith Data:\n{This}");
-            //}
+            }
+            else if(ArcadeGameStartAndStopService.LastCardGUID != null && ArcadeGameStartAndStopService.LastCheckKey != null)
+            {
+                ArcadeGameStartAndStopService.Logger.WriteLog($"Play game called\nWith Data:\n{This}");
+                Return.ActionData = ArcadeGameStartAndStopService.TheServerClient.PlayGame(ArcadeGameStartAndStopService.LastCardGUID, ArcadeGameStartAndStopService.LastCheckKey.Value, This.ActionData.GameGUID).Data;
+            }
+            else
+            {
+                throw new Exception("Shouldn't be possible");
+            }
 
-            
+
 
             ArcadeGameStartAndStopService.Logger.WriteLog($"Retuning with:\n{Return}\n");
             return Return;
@@ -67,7 +72,7 @@ namespace GameStartStopService
         public JSONResponse<CanPlayReturn> CanPlayGame(JSONAction<PlayInput> This)
         {
             JSONResponse<CanPlayReturn> Return = new JSONResponse<CanPlayReturn>() { ActionName = This.ActionName, RequestStatus = JSONResponseStatus.Success };
-            if (ArcadeGameStartAndStopService.MainConfig.ServerMode == ServerMode.NoServerDemoMode)
+            if (ArcadeGameStartAndStopService.MainConfig.ServerMode == ServerMode.NoServerDemoMode || ArcadeGameStartAndStopService.MainConfig.CardModeMode == CardModeMode.NoCardNeededDemoMode)
             {
                 ArcadeGameStartAndStopService.Logger.WriteLog($"Can play game called\nWith Data:\n{This}\n");
                 Return.ActionData = new CanPlayReturn()
@@ -77,6 +82,22 @@ namespace GameStartStopService
                     NewBalance = 280.00,
                     //NewCheckKey = 0
                 };
+            }
+            else
+            {
+                ArcadeGameStartAndStopService.Logger.WriteLog($"Play game called\nWith Data:\n{This}");
+                CanPlayTransactionReturn Data = ArcadeGameStartAndStopService.NFCReader.Card.CanPlayGameTransactionWithServer(This.ActionData.GameGUID).Data;
+                if (Data.CanPlay)
+                {
+                    ArcadeGameStartAndStopService.LastCardGUID = Data.CardGUID;
+                    ArcadeGameStartAndStopService.LastCheckKey = Data.NewCheckKey;
+                }
+                else
+                {
+                    ArcadeGameStartAndStopService.LastCardGUID = null;
+                    ArcadeGameStartAndStopService.LastCheckKey = null;
+                }
+                Return.ActionData = Data;
             }
             ArcadeGameStartAndStopService.Logger.WriteLog($"Retuning with:\n{Return}\n");
             return Return;

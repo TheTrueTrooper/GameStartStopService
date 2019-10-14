@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.Lab_MachinesToStart = new System.Windows.Forms.Label();
             this.Bu_Start = new System.Windows.Forms.Button();
             this.CheLisBox_ConnectedMachines = new System.Windows.Forms.CheckedListBox();
@@ -43,11 +42,9 @@
             this.Lab_GameName = new System.Windows.Forms.Label();
             this.Bu_Stop = new System.Windows.Forms.Button();
             this.RicTexBox_Log = new System.Windows.Forms.RichTextBox();
-            this.But_ChargeCard = new System.Windows.Forms.Button();
-            this.Lab_LastCardScannedAtAttendant = new System.Windows.Forms.Label();
             this.Lab_EventLog = new System.Windows.Forms.Label();
-            this.Pan_CardTapStatus = new System.Windows.Forms.Panel();
-            this.MachineCheckHeartBeat = new System.Windows.Forms.Timer(this.components);
+            this.LisBox_RunningMachines = new System.Windows.Forms.ListBox();
+            this.Lab_RunningMachines = new System.Windows.Forms.Label();
             this.GroBox_GameSelector.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox_GameImage)).BeginInit();
             this.SuspendLayout();
@@ -65,19 +62,21 @@
             // 
             this.Bu_Start.Location = new System.Drawing.Point(15, 725);
             this.Bu_Start.Name = "Bu_Start";
-            this.Bu_Start.Size = new System.Drawing.Size(1149, 23);
+            this.Bu_Start.Size = new System.Drawing.Size(1524, 23);
             this.Bu_Start.TabIndex = 2;
             this.Bu_Start.Text = "Start Button";
             this.Bu_Start.UseVisualStyleBackColor = true;
+            this.Bu_Start.Click += new System.EventHandler(this.Bu_Start_Click);
             // 
             // CheLisBox_ConnectedMachines
             // 
             this.CheLisBox_ConnectedMachines.CheckOnClick = true;
             this.CheLisBox_ConnectedMachines.FormattingEnabled = true;
-            this.CheLisBox_ConnectedMachines.Location = new System.Drawing.Point(15, 29);
+            this.CheLisBox_ConnectedMachines.Location = new System.Drawing.Point(15, 44);
             this.CheLisBox_ConnectedMachines.Name = "CheLisBox_ConnectedMachines";
-            this.CheLisBox_ConnectedMachines.Size = new System.Drawing.Size(369, 484);
+            this.CheLisBox_ConnectedMachines.Size = new System.Drawing.Size(369, 469);
             this.CheLisBox_ConnectedMachines.TabIndex = 3;
+            this.CheLisBox_ConnectedMachines.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheLisBox_ConnectedMachines_ItemCheck);
             // 
             // GroBox_GameSelector
             // 
@@ -177,40 +176,23 @@
             // 
             // Bu_Stop
             // 
+            this.Bu_Stop.Enabled = false;
             this.Bu_Stop.Location = new System.Drawing.Point(15, 754);
             this.Bu_Stop.Name = "Bu_Stop";
-            this.Bu_Stop.Size = new System.Drawing.Size(1149, 23);
+            this.Bu_Stop.Size = new System.Drawing.Size(1524, 23);
             this.Bu_Stop.TabIndex = 8;
             this.Bu_Stop.Text = "Stop Button";
             this.Bu_Stop.UseVisualStyleBackColor = true;
+            this.Bu_Stop.Click += new System.EventHandler(this.Bu_Stop_Click);
             // 
             // RicTexBox_Log
             // 
             this.RicTexBox_Log.Enabled = false;
             this.RicTexBox_Log.Location = new System.Drawing.Point(15, 571);
             this.RicTexBox_Log.Name = "RicTexBox_Log";
-            this.RicTexBox_Log.Size = new System.Drawing.Size(1143, 129);
+            this.RicTexBox_Log.Size = new System.Drawing.Size(1524, 137);
             this.RicTexBox_Log.TabIndex = 8;
             this.RicTexBox_Log.Text = "";
-            // 
-            // But_ChargeCard
-            // 
-            this.But_ChargeCard.Location = new System.Drawing.Point(15, 823);
-            this.But_ChargeCard.Name = "But_ChargeCard";
-            this.But_ChargeCard.Size = new System.Drawing.Size(1149, 23);
-            this.But_ChargeCard.TabIndex = 9;
-            this.But_ChargeCard.Text = "Charge Card";
-            this.But_ChargeCard.UseVisualStyleBackColor = true;
-            // 
-            // Lab_LastCardScannedAtAttendant
-            // 
-            this.Lab_LastCardScannedAtAttendant.Font = new System.Drawing.Font("MS Reference Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lab_LastCardScannedAtAttendant.Location = new System.Drawing.Point(40, 790);
-            this.Lab_LastCardScannedAtAttendant.Name = "Lab_LastCardScannedAtAttendant";
-            this.Lab_LastCardScannedAtAttendant.Size = new System.Drawing.Size(1124, 19);
-            this.Lab_LastCardScannedAtAttendant.TabIndex = 8;
-            this.Lab_LastCardScannedAtAttendant.Text = "Taped Card Info";
-            this.Lab_LastCardScannedAtAttendant.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Lab_EventLog
             // 
@@ -221,27 +203,31 @@
             this.Lab_EventLog.TabIndex = 10;
             this.Lab_EventLog.Text = "Event Log";
             // 
-            // Pan_CardTapStatus
+            // LisBox_RunningMachines
             // 
-            this.Pan_CardTapStatus.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Pan_CardTapStatus.Location = new System.Drawing.Point(15, 790);
-            this.Pan_CardTapStatus.Name = "Pan_CardTapStatus";
-            this.Pan_CardTapStatus.Size = new System.Drawing.Size(19, 19);
-            this.Pan_CardTapStatus.TabIndex = 11;
+            this.LisBox_RunningMachines.FormattingEnabled = true;
+            this.LisBox_RunningMachines.Location = new System.Drawing.Point(1170, 41);
+            this.LisBox_RunningMachines.Name = "LisBox_RunningMachines";
+            this.LisBox_RunningMachines.Size = new System.Drawing.Size(369, 472);
+            this.LisBox_RunningMachines.TabIndex = 11;
             // 
-            // MachineCheckHeartBeat
+            // Lab_RunningMachines
             // 
-            this.MachineCheckHeartBeat.Tick += new System.EventHandler(this.MachineCheckHeartBeat_Tick);
+            this.Lab_RunningMachines.AutoSize = true;
+            this.Lab_RunningMachines.Location = new System.Drawing.Point(1167, 13);
+            this.Lab_RunningMachines.Name = "Lab_RunningMachines";
+            this.Lab_RunningMachines.Size = new System.Drawing.Size(96, 13);
+            this.Lab_RunningMachines.TabIndex = 12;
+            this.Lab_RunningMachines.Text = "Running Machines";
             // 
             // AttendantConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1170, 850);
-            this.Controls.Add(this.Pan_CardTapStatus);
+            this.ClientSize = new System.Drawing.Size(1554, 794);
+            this.Controls.Add(this.Lab_RunningMachines);
+            this.Controls.Add(this.LisBox_RunningMachines);
             this.Controls.Add(this.Lab_EventLog);
-            this.Controls.Add(this.Lab_LastCardScannedAtAttendant);
-            this.Controls.Add(this.But_ChargeCard);
             this.Controls.Add(this.RicTexBox_Log);
             this.Controls.Add(this.Bu_Stop);
             this.Controls.Add(this.GroBox_GameSelector);
@@ -249,11 +235,12 @@
             this.Controls.Add(this.Bu_Start);
             this.Controls.Add(this.Lab_MachinesToStart);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1186, 889);
+            this.MaximumSize = new System.Drawing.Size(1570, 889);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1186, 889);
+            this.MinimumSize = new System.Drawing.Size(1570, 833);
             this.Name = "AttendantConsole";
             this.Text = "Attendant Console";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AttendantConsole_FormClosing);
             this.GroBox_GameSelector.ResumeLayout(false);
             this.GroBox_GameSelector.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox_GameImage)).EndInit();
@@ -278,10 +265,8 @@
         private System.Windows.Forms.Label Lab_GameName;
         private System.Windows.Forms.Button Bu_Stop;
         private System.Windows.Forms.RichTextBox RicTexBox_Log;
-        private System.Windows.Forms.Button But_ChargeCard;
-        private System.Windows.Forms.Label Lab_LastCardScannedAtAttendant;
         private System.Windows.Forms.Label Lab_EventLog;
-        private System.Windows.Forms.Panel Pan_CardTapStatus;
-        private System.Windows.Forms.Timer MachineCheckHeartBeat;
+        private System.Windows.Forms.ListBox LisBox_RunningMachines;
+        private System.Windows.Forms.Label Lab_RunningMachines;
     }
 }

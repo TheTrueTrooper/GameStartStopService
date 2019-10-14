@@ -10,7 +10,9 @@ using System.IO;
 
 namespace ServicePipeLine
 {
-    public class JSONSocketClient
+    public delegate void ClientDisconnect(JSONSocketClient DisconnectingEntity);
+
+    public class JSONSocketClient : IDisposable
     {
         IPEndPoint IP;
 
@@ -20,7 +22,10 @@ namespace ServicePipeLine
 
         JSONResponse<dynamic> LastResponse;
 
-        public MessageReceived MessageReceivedHandle;
+        public MessageReceived OnMessageReceived;
+        public ClientDisconnect OnDisconnect;
+
+        bool Disconnected = false;
 
         public IPEndPoint AddressInfo { get => ServerSocket.LocalEndPoint as IPEndPoint; }
 
@@ -39,66 +44,68 @@ namespace ServicePipeLine
 
         private static void ReadThreadLoop(object obj)
         {
+            const int BufferSize = 1024;
+
             JSONSocketClient This = (JSONSocketClient)obj;
-            using (MemoryStream MS = new MemoryStream())
-            using (StreamReader Reader = new StreamReader(MS))
+
+            string CurrentMessage = "";
+            while (!This.Disconnected)
             {
-                string CurrentMessage = "";
-                while (true)
+                byte[] ReceiveDataBuffer = new byte[BufferSize];
+                int ReceivedDataLength = 0;
+
+                try
                 {
-                    byte[] ReceiveDataBuffer = new byte[24];
-                    int ReceivedDataLength = 0;
-
                     ReceivedDataLength = This.ServerSocket.Receive(ReceiveDataBuffer);
+                }
+                catch
+                {
+                    This.ServerSocket.Disconnect(false);
+                    This.Disconnected = true;
+                    This.OnDisconnect?.Invoke(This);
+                }
 
-                    long LastPos = 0;
-                    try
+                CurrentMessage += Encoding.Default.GetString(ReceiveDataBuffer.Where(x => x != 0).ToArray());
+
+                if (CurrentMessage.Count() > 0 && CurrentMessage.Last() == '\n')
+                {
+                    JSONResponse<dynamic> Response = JSONResponse<dynamic>.FromString(CurrentMessage);
+                    lock (This)
                     {
-                        LastPos = MS.Position;
-
-                        MS.Seek(0, SeekOrigin.End);
-
-                        MS.Write(ReceiveDataBuffer, 0, ReceivedDataLength);
-
-                        MS.Position = LastPos;
-
-                        CurrentMessage += Reader.ReadLine();
-                    }
-                    catch { }
-
-                    if (CurrentMessage.Count() % 24 != 0 || CurrentMessage.Last() == '\n')
-                    {
-                        JSONResponse<dynamic> Response = JSONResponse<dynamic>.FromString(CurrentMessage);
-                        lock (This)
+                        if (Response.RequestStatus == JSONResponseStatus.NotPresent)
                         {
-                            if (This.MessageReceivedHandle != null)
-                            {
-                                if (Response.RequestStatus == JSONResponseStatus.NotPresent)
-                                    This.TransmitJSONResponse(This.MessageReceivedHandle?.Invoke(new JSONAction<dynamic>() { ActionName = Response.ActionName, ActionData = Response.ActionDataObj }));
-                                else
-                                    lock (This)
-                                        This.LastResponse = Response;
-                            }
+                            if (This.OnMessageReceived != null)
+                                This.TransmitJSONResponse(This.OnMessageReceived?.Invoke(new JSONAction<dynamic>() { ActionName = Response.ActionName, ActionData = Response.ActionDataObj }));
                         }
+                        else
+                            lock (This)
+                                This.LastResponse = Response;
                         CurrentMessage = "";
                     }
                 }
             }
+
         }
 
         public JSONResponse<J> TransmitJSONCommand<T, J>(JSONAction<T> JSONAction)
         {
             JSONResponse<J> Return;
-            ServerSocket.Send(Encoding.ASCII.GetBytes(JSONAction.ToString()));
+            ServerSocket.Send(Encoding.ASCII.GetBytes($"{JSONAction}\n"));
             while (LastResponse == null) ;
             Return = (JSONResponse<J>)LastResponse.ResponseDynamicAutoCast(typeof(J));
             LastResponse = null;
             return Return;
         }
 
-        void TransmitJSONResponse<T>(JSONResponse<T> JSONAction)
+        void TransmitJSONResponse<T>(JSONResponse<T> JSONResponse)
         {
-            ServerSocket.Send(Encoding.ASCII.GetBytes(JSONAction.ToString()));
+            ServerSocket.Send(Encoding.ASCII.GetBytes($"{JSONResponse}\n"));
+        }
+
+        public void Dispose()
+        {
+            Disconnected = true;
+            ServerSocket.Dispose();
         }
     }
 }

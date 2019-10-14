@@ -65,7 +65,7 @@ namespace GameStartStopService.UtilitiesFolder
         #endregion
 
         //deprecated sigature internal static ResponseInfo<PlayGameReturn, ResponseStatus> PlayGameTransactionWithServer(this ACR122UManager This, ServerClient Client, string GUID)
-        internal static ResponseInfo<CanPlayReturn, ResponseStatus> CanPlayGameTransactionWithServer(this ISO1443A_MifareClassic_NFCCard This, ServerClient Client, string GUID)
+        internal static ResponseInfo<CanPlayTransactionReturn, ResponseStatus> CanPlayGameTransactionWithServer(this ISO1443A_MifareClassic_NFCCard This, string GUID)
         {
             ResponseInfo<CanPlayReturn, ResponseStatus> Response = null;
 
@@ -100,7 +100,7 @@ namespace GameStartStopService.UtilitiesFolder
             }
             try
             {
-                Response = Client.CanPlayGame(CardNumber, CardCheckValue, GUID);
+                Response = ArcadeGameStartAndStopService.TheServerClient.CanPlayGame(CardNumber, CardCheckValue, GUID);
                 if (Response.Status != ResponseStatus.Success)
                     throw new CardTransationException(CardTransationExceptionLocation.ServerCardCheckFail, Response.Message, null);
             }
@@ -117,7 +117,7 @@ namespace GameStartStopService.UtilitiesFolder
             {
                 throw new CardTransationException(CardTransationExceptionLocation.CardCheckValueWriteFail, e.Message, e);
             }
-            return Response;
+            return new ResponseInfo<CanPlayTransactionReturn, ResponseStatus> { Status = Response.Status, PageInfo = Response.PageInfo, Message = Response.Message, Data = new CanPlayTransactionReturn() { CardGUID = CardNumber, CanPlay = Response.Data.CanPlay, CurrentBalance = Response.Data.CurrentBalance, NewBalance = Response.Data.NewBalance, NewCheckKey = Response.Data.NewCheckKey } };
         }
     }
 }

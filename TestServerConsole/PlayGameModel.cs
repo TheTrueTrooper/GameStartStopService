@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameStartStopService.SocketServer
+namespace TestServerConsole
 {
-    class SlaveSocketClient
+    class PlayGameModel
     {
+        public string GUID;
     }
 }

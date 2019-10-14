@@ -1,0 +1,15 @@
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\GameInstancerConfig.xml
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\GameInstancerConfig.json
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\GameSelectorWrapper.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\GameSelectorWrapper.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\GameInstancer.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\ServicePipeLine.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\Newtonsoft.Json.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\GameInstancer.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\ServicePipeLine.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\bin\Release\Newtonsoft.Json.xml
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\obj\Release\GameSelectorWrapper.csprojAssemblyReference.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\obj\Release\GameSelectorWrapper.csproj.CoreCompileInputs.cache
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\obj\Release\GameSelectorWrapper.csproj.CopyComplete
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\obj\Release\GameSelectorWrapper.dll
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameSelectorWrapper\obj\Release\GameSelectorWrapper.pdb
