@@ -15,30 +15,34 @@ namespace GameStartStopService
         /// </summary>
         static void Main()
         {
-            //Console.WriteLine("Sudo Service Starting.");
-            //Thread ServiceThread = new Thread(new ThreadStart(ServiceRun));
-            //ServiceThread.Start();
-            //Console.ReadKey();
-            //Console.WriteLine("Sudo Service Started.\nPress any key to end!");
-            //Console.ReadKey();
-            //Console.WriteLine("Sudo Service Ending.");
-            //System.Windows.Forms.Application.Exit();
-            //Console.WriteLine("Sudo Service Ended.\nPress any key to end console and close out!");
-            //Console.ReadKey();
-
+#if DEBUG
+            Console.WriteLine("Sudo Service Starting.");
+            Thread ServiceThread = new Thread(new ThreadStart(ServiceRun));
+            ServiceThread.Start();
+            Console.ReadKey();
+            Console.WriteLine("Sudo Service Started.\nPress any key to end!");
+            Console.ReadKey();
+            Console.WriteLine("Sudo Service Ending.");
+            System.Windows.Forms.Application.Exit();
+            Console.WriteLine("Sudo Service Ended.\nPress any key to end console and close out!");
+            Console.ReadKey();
+#else
             ServiceBase[] ServicesToRun = new ServiceBase[]
             {
                 new ArcadeGameStartAndStopService()
             };
             ServiceBase.Run(ServicesToRun);
+#endif
         }
 
-        //static void ServiceRun()
-        //{
-        //    ArcadeGameStartAndStopService Service = new ArcadeGameStartAndStopService();
-        //    Service.OnDebugStart();
-        //    System.Windows.Forms.Application.Run();
-        //    Service.OnDebugEnd();
-        //}
+#if DEBUG
+        static void ServiceRun()
+        {
+            ArcadeGameStartAndStopService Service = new ArcadeGameStartAndStopService();
+            Service.OnDebugStart();
+            System.Windows.Forms.Application.Run();
+            Service.OnDebugEnd();
+        }
+#endif
     }
 }

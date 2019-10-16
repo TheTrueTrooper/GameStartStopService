@@ -4,7 +4,6 @@ C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopServic
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Release\rfidlib_aip_iso14443A.dll
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Release\rfidlib_nfc.dll
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Release\rfidlib_reader.dll
-C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Release\rfidlib.cs
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Release\VRRcadeServiceIcon.ico
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Release\GameServiceConfig.json
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\bin\Release\GameStartStopService.exe.config
@@ -32,3 +31,4 @@ C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopServic
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Release\ArcadeGameStartAndStopService.csproj.CopyComplete
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Release\GameStartStopService.exe
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Release\GameStartStopService.pdb
+C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\GameStartStopService\obj\Release\GameStartStopService.ProjectInstaller.resources

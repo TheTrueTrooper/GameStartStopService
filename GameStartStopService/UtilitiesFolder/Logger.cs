@@ -128,6 +128,7 @@ namespace GameStartStopService.UtilitiesFolder
 
         internal void WriteConsole(string Message, LoggerWarringLevel Level = LoggerWarringLevel.RegularMessage)
         {
+#if DEBUG
             lock (ArcadeServiceEventEventLog)
                 try
                 {
@@ -156,6 +157,7 @@ namespace GameStartStopService.UtilitiesFolder
                             break;
                     }
                 } catch{}
+#endif
         }
 
         string BuildLogString(string Message, LoggerWarringLevel Level)

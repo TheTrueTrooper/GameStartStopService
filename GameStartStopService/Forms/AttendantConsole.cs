@@ -23,11 +23,12 @@ namespace GameStartStopService
 
         internal AttendantConsole(MasterServer Owner)
         {
+            OwningServer = Owner;
+
             InitializeComponent();
 
             UpdateGameSelectorList();
             BuildMachineList();
-            OwningServer = Owner;
         }
 
         void BuildMachineList()

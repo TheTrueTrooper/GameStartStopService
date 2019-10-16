@@ -31,6 +31,8 @@ namespace GameStartStopService.BasicConfig
         internal ServerCredential ServerCredential { get; set; } = new ServerCredential();
         [JsonProperty("MachineName")]
         internal string MachineName { get; set; }
+        [JsonProperty("PortNumber")]
+        internal int PortNumber { get; set; }
         //depreciated with game selector
         //[JsonProperty("DefualtGameGUID")]
         //internal string DefualtGameGUID { get; set; }

@@ -31,6 +31,8 @@
             this.Lab_MasterServerURL = new System.Windows.Forms.Label();
             this.Lab_ServerLogOutput = new System.Windows.Forms.Label();
             this.GroBox_ServerOptions = new System.Windows.Forms.GroupBox();
+            this.Lab_ServerMode = new System.Windows.Forms.Label();
+            this.LisBox_ServerMode = new System.Windows.Forms.ListBox();
             this.TexBox_MachineGUID = new System.Windows.Forms.TextBox();
             this.Lab_MachineGUID = new System.Windows.Forms.Label();
             this.TexBox_ServerLogOutput = new System.Windows.Forms.TextBox();
@@ -41,6 +43,10 @@
             this.Lab_UserName = new System.Windows.Forms.Label();
             this.Lab_Password = new System.Windows.Forms.Label();
             this.GroBox_LocalOptions = new System.Windows.Forms.GroupBox();
+            this.TexBox_MasterStarterMasterPort = new System.Windows.Forms.TextBox();
+            this.Lab_MasterStarterMasterPort = new System.Windows.Forms.Label();
+            this.LisBox_CardMode = new System.Windows.Forms.ListBox();
+            this.Lab_CardMode = new System.Windows.Forms.Label();
             this.TexBox_MachineName = new System.Windows.Forms.TextBox();
             this.TexBox_LocalLogOutput = new System.Windows.Forms.TextBox();
             this.TexBox_MasterStarterMasterLoc = new System.Windows.Forms.TextBox();
@@ -50,10 +56,6 @@
             this.Lab_MachineName = new System.Windows.Forms.Label();
             this.Lab_LocalLogOutput = new System.Windows.Forms.Label();
             this.But_Save = new System.Windows.Forms.Button();
-            this.Lab_ServerMode = new System.Windows.Forms.Label();
-            this.LisBox_ServerMode = new System.Windows.Forms.ListBox();
-            this.LisBox_CardMode = new System.Windows.Forms.ListBox();
-            this.Lab_CardMode = new System.Windows.Forms.Label();
             this.GroBox_ServerOptions.SuspendLayout();
             this.GroBox_Credentials.SuspendLayout();
             this.GroBox_LocalOptions.SuspendLayout();
@@ -94,6 +96,26 @@
             this.GroBox_ServerOptions.TabIndex = 3;
             this.GroBox_ServerOptions.TabStop = false;
             this.GroBox_ServerOptions.Text = "ASP.NET Server Configs";
+            // 
+            // Lab_ServerMode
+            // 
+            this.Lab_ServerMode.AutoSize = true;
+            this.Lab_ServerMode.Location = new System.Drawing.Point(6, 26);
+            this.Lab_ServerMode.Name = "Lab_ServerMode";
+            this.Lab_ServerMode.Size = new System.Drawing.Size(107, 13);
+            this.Lab_ServerMode.TabIndex = 8;
+            this.Lab_ServerMode.Text = "Service Server Mode";
+            // 
+            // LisBox_ServerMode
+            // 
+            this.LisBox_ServerMode.FormattingEnabled = true;
+            this.LisBox_ServerMode.Items.AddRange(new object[] {
+            "ConnectToServer",
+            "NoServerDemoMode"});
+            this.LisBox_ServerMode.Location = new System.Drawing.Point(180, 26);
+            this.LisBox_ServerMode.Name = "LisBox_ServerMode";
+            this.LisBox_ServerMode.Size = new System.Drawing.Size(412, 30);
+            this.LisBox_ServerMode.TabIndex = 8;
             // 
             // TexBox_MachineGUID
             // 
@@ -172,6 +194,8 @@
             // 
             // GroBox_LocalOptions
             // 
+            this.GroBox_LocalOptions.Controls.Add(this.TexBox_MasterStarterMasterPort);
+            this.GroBox_LocalOptions.Controls.Add(this.Lab_MasterStarterMasterPort);
             this.GroBox_LocalOptions.Controls.Add(this.LisBox_CardMode);
             this.GroBox_LocalOptions.Controls.Add(this.Lab_CardMode);
             this.GroBox_LocalOptions.Controls.Add(this.TexBox_MachineName);
@@ -184,10 +208,47 @@
             this.GroBox_LocalOptions.Controls.Add(this.Lab_LocalLogOutput);
             this.GroBox_LocalOptions.Location = new System.Drawing.Point(6, 239);
             this.GroBox_LocalOptions.Name = "GroBox_LocalOptions";
-            this.GroBox_LocalOptions.Size = new System.Drawing.Size(602, 187);
+            this.GroBox_LocalOptions.Size = new System.Drawing.Size(602, 230);
             this.GroBox_LocalOptions.TabIndex = 4;
             this.GroBox_LocalOptions.TabStop = false;
             this.GroBox_LocalOptions.Text = "Local Configs";
+            // 
+            // TexBox_MasterStarterMasterPort
+            // 
+            this.TexBox_MasterStarterMasterPort.Location = new System.Drawing.Point(186, 86);
+            this.TexBox_MasterStarterMasterPort.Name = "TexBox_MasterStarterMasterPort";
+            this.TexBox_MasterStarterMasterPort.Size = new System.Drawing.Size(412, 20);
+            this.TexBox_MasterStarterMasterPort.TabIndex = 11;
+            this.TexBox_MasterStarterMasterPort.TextChanged += new System.EventHandler(this.TexBox_MasterStarterMasterPort_TextChanged);
+            // 
+            // Lab_MasterStarterMasterPort
+            // 
+            this.Lab_MasterStarterMasterPort.AutoSize = true;
+            this.Lab_MasterStarterMasterPort.Location = new System.Drawing.Point(6, 89);
+            this.Lab_MasterStarterMasterPort.Name = "Lab_MasterStarterMasterPort";
+            this.Lab_MasterStarterMasterPort.Size = new System.Drawing.Size(130, 13);
+            this.Lab_MasterStarterMasterPort.TabIndex = 10;
+            this.Lab_MasterStarterMasterPort.Text = "Master Starter Master Port";
+            // 
+            // LisBox_CardMode
+            // 
+            this.LisBox_CardMode.FormattingEnabled = true;
+            this.LisBox_CardMode.Items.AddRange(new object[] {
+            "UseCard",
+            "NoCardNeededDemoMode"});
+            this.LisBox_CardMode.Location = new System.Drawing.Point(184, 183);
+            this.LisBox_CardMode.Name = "LisBox_CardMode";
+            this.LisBox_CardMode.Size = new System.Drawing.Size(414, 30);
+            this.LisBox_CardMode.TabIndex = 9;
+            // 
+            // Lab_CardMode
+            // 
+            this.Lab_CardMode.AutoSize = true;
+            this.Lab_CardMode.Location = new System.Drawing.Point(4, 183);
+            this.Lab_CardMode.Name = "Lab_CardMode";
+            this.Lab_CardMode.Size = new System.Drawing.Size(97, 13);
+            this.Lab_CardMode.TabIndex = 8;
+            this.Lab_CardMode.Text = "Card Reader Mode";
             // 
             // TexBox_MachineName
             // 
@@ -218,7 +279,7 @@
             "MultiSocketStarterMaster",
             "MultiSocketStarterSlave",
             "AttendantChargeDeskOnly"});
-            this.LisBox_GameStarterMode.Location = new System.Drawing.Point(186, 86);
+            this.LisBox_GameStarterMode.Location = new System.Drawing.Point(186, 120);
             this.LisBox_GameStarterMode.Name = "LisBox_GameStarterMode";
             this.LisBox_GameStarterMode.Size = new System.Drawing.Size(412, 56);
             this.LisBox_GameStarterMode.TabIndex = 4;
@@ -236,7 +297,7 @@
             // Lab_StarterMode
             // 
             this.Lab_StarterMode.AutoSize = true;
-            this.Lab_StarterMode.Location = new System.Drawing.Point(6, 87);
+            this.Lab_StarterMode.Location = new System.Drawing.Point(6, 121);
             this.Lab_StarterMode.Name = "Lab_StarterMode";
             this.Lab_StarterMode.Size = new System.Drawing.Size(99, 13);
             this.Lab_StarterMode.TabIndex = 2;
@@ -262,7 +323,7 @@
             // 
             // But_Save
             // 
-            this.But_Save.Location = new System.Drawing.Point(6, 432);
+            this.But_Save.Location = new System.Drawing.Point(2, 475);
             this.But_Save.Name = "But_Save";
             this.But_Save.Size = new System.Drawing.Size(602, 23);
             this.But_Save.TabIndex = 5;
@@ -270,51 +331,11 @@
             this.But_Save.UseVisualStyleBackColor = true;
             this.But_Save.Click += new System.EventHandler(this.But_Save_Click);
             // 
-            // Lab_ServerMode
-            // 
-            this.Lab_ServerMode.AutoSize = true;
-            this.Lab_ServerMode.Location = new System.Drawing.Point(6, 26);
-            this.Lab_ServerMode.Name = "Lab_ServerMode";
-            this.Lab_ServerMode.Size = new System.Drawing.Size(107, 13);
-            this.Lab_ServerMode.TabIndex = 8;
-            this.Lab_ServerMode.Text = "Service Server Mode";
-            // 
-            // LisBox_ServerMode
-            // 
-            this.LisBox_ServerMode.FormattingEnabled = true;
-            this.LisBox_ServerMode.Items.AddRange(new object[] {
-            "ConnectToServer",
-            "NoServerDemoMode"});
-            this.LisBox_ServerMode.Location = new System.Drawing.Point(180, 26);
-            this.LisBox_ServerMode.Name = "LisBox_ServerMode";
-            this.LisBox_ServerMode.Size = new System.Drawing.Size(412, 30);
-            this.LisBox_ServerMode.TabIndex = 8;
-            // 
-            // LisBox_CardMode
-            // 
-            this.LisBox_CardMode.FormattingEnabled = true;
-            this.LisBox_CardMode.Items.AddRange(new object[] {
-            "UseCard",
-            "NoCardNeededDemoMode"});
-            this.LisBox_CardMode.Location = new System.Drawing.Point(184, 148);
-            this.LisBox_CardMode.Name = "LisBox_CardMode";
-            this.LisBox_CardMode.Size = new System.Drawing.Size(412, 30);
-            this.LisBox_CardMode.TabIndex = 9;
-            // 
-            // Lab_CardMode
-            // 
-            this.Lab_CardMode.AutoSize = true;
-            this.Lab_CardMode.Location = new System.Drawing.Point(4, 149);
-            this.Lab_CardMode.Name = "Lab_CardMode";
-            this.Lab_CardMode.Size = new System.Drawing.Size(97, 13);
-            this.Lab_CardMode.TabIndex = 8;
-            this.Lab_CardMode.Text = "Card Reader Mode";
-            // 
             // ConfigEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 466);
+            this.ClientSize = new System.Drawing.Size(624, 520);
             this.Controls.Add(this.But_Save);
             this.Controls.Add(this.GroBox_LocalOptions);
             this.Controls.Add(this.GroBox_ServerOptions);
@@ -360,5 +381,7 @@
         private System.Windows.Forms.ListBox LisBox_ServerMode;
         private System.Windows.Forms.ListBox LisBox_CardMode;
         private System.Windows.Forms.Label Lab_CardMode;
+        private System.Windows.Forms.TextBox TexBox_MasterStarterMasterPort;
+        private System.Windows.Forms.Label Lab_MasterStarterMasterPort;
     }
 }

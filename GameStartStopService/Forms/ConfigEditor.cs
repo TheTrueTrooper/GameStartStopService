@@ -20,6 +20,9 @@ namespace GameStartStopService
         bool ShowingErrorAlready = false;
 
         private const int CP_NOCLOSE_BUTTON = 0x200;
+
+        int LastPortNumber;
+
         protected override CreateParams CreateParams
         {
             get
@@ -49,6 +52,7 @@ namespace GameStartStopService
             NewInstance.TexBox_Password.Text = ArcadeGameStartAndStopService.MainConfig.ServerCredential.Password;
             NewInstance.TexBox_UserName.Text = ArcadeGameStartAndStopService.MainConfig.ServerCredential.UserName;
             NewInstance.TexBox_ServerLogOutput.Text = ArcadeGameStartAndStopService.MainConfig.ServerLogOutput;
+            NewInstance.TexBox_MasterStarterMasterPort.Text = ArcadeGameStartAndStopService.MainConfig.PortNumber.ToString();
             //NewInstance.TexBox_DefualtGameGUID.Text = NewInstance.Config.DefualtGameGUID;
             NewInstance.LisBox_GameStarterMode.SelectedIndex = NewInstance.LisBox_GameStarterMode.FindStringExact(ArcadeGameStartAndStopService.MainConfig.StarterMode.ToString());
             NewInstance.LisBox_ServerMode.SelectedIndex = NewInstance.LisBox_ServerMode.FindStringExact(ArcadeGameStartAndStopService.MainConfig.ServerMode.ToString());
@@ -186,6 +190,22 @@ namespace GameStartStopService
                 TopMost = true;
                 BringToFront();
                 MessageBox.Show("Please condig the service to avoid any more errors.");
+            }
+        }
+
+
+        private void TexBox_MasterStarterMasterPort_TextChanged(object sender, EventArgs e)
+        {
+            int Number = 0;
+            bool IsNumber = int.TryParse(TexBox_MasterStarterMasterPort.Text, out Number);
+            if (IsNumber && Number >= LastPortNumber)
+                LastPortNumber = Number;
+            else
+            {
+                MessageBox.Show("Sorry, but that is not a valid number max of shares. It must be a whole number and larger or equal to the min");
+                TexBox_MasterStarterMasterPort.Text = LastPortNumber.ToString();
+                TexBox_MasterStarterMasterPort.SelectionStart = TexBox_MasterStarterMasterPort.Text.Length;
+                TexBox_MasterStarterMasterPort.SelectionLength = 0;
             }
         }
     }

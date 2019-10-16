@@ -277,8 +277,22 @@ namespace GameStartStopService
 
             if (MainConfig.CardModeMode != CardModeMode.NoCardNeededDemoMode)
             {
-                NFCReader = new RL8000_NFC();
-                NFCReader.MifareClassicISO1443ACardDetectedEvent += CardDetected;
+                try
+                {
+                    NFCReader = new RL8000_NFC();
+                    NFCReader.MifareClassicISO1443ACardDetectedEvent += CardDetected;
+                }
+                catch
+                {
+                    const string Error = "\nError - Cannot find card reader.\nPlease replug in the card reader.\nWill try again in 20000ms.\n";
+                    Logger.WriteLog(Error, LoggerWarringLevel.Danger);
+#if !DEBUG
+                    DialogResult Result = MessageBox.Show(Error, "Error", MessageBoxButtons.RetryCancel);
+                    if (Result == DialogResult.Cancel)
+                        Application.Exit();
+#endif
+                    Thread.Sleep(20000);
+                }
             }
             else
             {
@@ -293,13 +307,47 @@ namespace GameStartStopService
 
             if (MainConfig.StarterMode == GameStartMode.MultiSocketStarterMaster)
             {
-                MasterServer = new MasterServer();
-                MasterServer.ShowConsole();
+                while (MasterServer == null)
+                {
+                    try
+                    {
+                        MasterServer = new MasterServer(MainConfig.PortNumber);
+                        MasterServer.ShowConsole();
+                    }
+                    catch
+                    {
+                        const string Error = "\nError - Master Server can not open port.\nPlease Check for Port usage or your config file.\nWill try again in 20000ms.";
+                        Logger.WriteLog(Error, LoggerWarringLevel.Danger);
+#if !DEBUG
+                    DialogResult Result = MessageBox.Show(Error, "Error", MessageBoxButtons.RetryCancel);
+                    if (Result == DialogResult.Cancel)
+                        Application.Exit();
+#endif
+                        Thread.Sleep(20000);
+                    }
+                }
             }
 
             if(MainConfig.StarterMode == GameStartMode.MultiSocketStarterSlave)
             {
-                SlaveClient = new SlaveClient(MainConfig.MasterStarterMasterLoc);
+                while (SlaveClient == null)
+                {
+                    try
+                    {
+                        SlaveClient = new SlaveClient(MainConfig.MasterStarterMasterLoc, MainConfig.PortNumber);
+                    }
+                    catch
+                    {
+                        const string Error = "\nError - Slaves Master Server is not responding.\nPlease Check the server, its endpoint, or your config file.\nWill try again in 20000ms.\n";
+                        Logger.WriteLog(Error, LoggerWarringLevel.Danger);
+#if !DEBUG
+                    DialogResult Result = MessageBox.Show(Error, "Error", MessageBoxButtons.RetryCancel);
+                    if (Result == DialogResult.Cancel)
+                        Application.Exit();
+#endif
+                        Thread.Sleep(20000);
+                    }
+                }
             }
 
             NoIc_GameStarterStopper.ContextMenuStrip = BuildMenu();

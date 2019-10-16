@@ -94,7 +94,7 @@ namespace RL8000_NFCReader
 
         public void DisconnectCard()
         {
-            if (!Card.Disposed)
+            if (Card!= null && !Card.Disposed)
                 Card.Dispose();
             Card = null;
         }
