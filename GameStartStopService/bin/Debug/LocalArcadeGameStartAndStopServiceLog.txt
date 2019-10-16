@@ -2794,3 +2794,217 @@ With Data:
 <RegularMessage Time="10/16/2019 1:25:36 AM">Retuning to get games with:
 {"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[{"ID":"dfasfds","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
 </RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:30 PM">'Arcade Game Start And Stop Service' has Started with the following parameters:
+	CardModeMode:NoCardNeededDemoMode
+	ServerMode:NoServerDemoMode
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:32 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:32 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:37 PM">Demo Started 10/16/2019 11:19:37 PM </RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:38 PM">Can play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"CanPlayGame"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:38 PM">Retuning with:
+{"ActionData":{"CanPlay":true,"CurrentBalance":300.0,"NewBalance":280.0,"NewCheckKey":null},"ActionName":"CanPlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:42 PM">Play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"PlayGame"}</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:42 PM">Retuning with:
+{"ActionData":{"ID":"00000000-0000-0000-0000-000000000000","Number":"","CheckNum":0,"CustomerID":null,"ExpiryDate":"2019-10-16T17:19:42.264922-06:00","LimitBalance":0.0,"ActivationDate":"2019-10-16T17:19:42.264922-06:00","Comments":"machine purchase","IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CustomerBalance":0.0,"Customer":{"ID":"00000000-0000-0000-0000-000000000000","FirstName":null,"MiddleName":null,"LastName":null,"Email":null,"PhoneNumber":null,"DOB":null,"Gender":null,"AddressLine1":null,"AddressLine2":null,"City":null,"State":null,"StateID":null,"CountryID":null,"Zip":null,"VRStoreID":null,"Balance":0.0,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CardCount":0}},"ActionName":"PlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:44 PM">Ending Game Menue to start Game</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:44 PM">GameInstancer - Game is starting. Time Starting 10/16/2019 5:19:44 PM Game: Phantom Breaker: Battle Grounds</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:44 PM">GameInstancer - Game has started. Time started: 10/16/2019 5:19:44 PM under mode NoCardNeededDemoMode</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:44 PM">GameInstancer - Game has Ended. Time Ended 10/16/2019 5:19:44 PM Reason: One or more of the Process has or was ended.
+As such a full shut down was started.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:44 PM">GameMenu - Game Menu has Started in response.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:46 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:19:46 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:20:46 PM">'Arcade Game Start And Stop Service' has Started with the following parameters:
+	CardModeMode:NoCardNeededDemoMode
+	ServerMode:NoServerDemoMode
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:20:48 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:20:48 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:20:56 PM">Demo Started 10/16/2019 11:20:56 PM </RegularMessage>
+<RegularMessage Time="10/16/2019 11:20:57 PM">Can play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"CanPlayGame"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:20:57 PM">Retuning with:
+{"ActionData":{"CanPlay":true,"CurrentBalance":300.0,"NewBalance":280.0,"NewCheckKey":null},"ActionName":"CanPlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:00 PM">Play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"PlayGame"}</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:00 PM">Retuning with:
+{"ActionData":{"ID":"00000000-0000-0000-0000-000000000000","Number":"","CheckNum":0,"CustomerID":null,"ExpiryDate":"2019-10-16T17:21:00.6025029-06:00","LimitBalance":0.0,"ActivationDate":"2019-10-16T17:21:00.6015029-06:00","Comments":"machine purchase","IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CustomerBalance":0.0,"Customer":{"ID":"00000000-0000-0000-0000-000000000000","FirstName":null,"MiddleName":null,"LastName":null,"Email":null,"PhoneNumber":null,"DOB":null,"Gender":null,"AddressLine1":null,"AddressLine2":null,"City":null,"State":null,"StateID":null,"CountryID":null,"Zip":null,"VRStoreID":null,"Balance":0.0,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CardCount":0}},"ActionName":"PlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:02 PM">Ending Game Menue to start Game</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:02 PM">GameInstancer - Game is starting. Time Starting 10/16/2019 5:21:02 PM Game: Phantom Breaker: Battle Grounds</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:02 PM">GameInstancer - Game has started. Time started: 10/16/2019 5:21:02 PM under mode NoCardNeededDemoMode</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:18 PM">GameInstancer - Game has Ended. Time Ended 10/16/2019 5:21:18 PM Reason: One or more of the Process has or was ended.
+As such a full shut down was started.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:18 PM">GameMenu - Game Menu has Started in response.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:20 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:20 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:33 PM">Demo Started 10/16/2019 11:21:33 PM </RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:33 PM">Can play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"CanPlayGame"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:33 PM">Retuning with:
+{"ActionData":{"CanPlay":true,"CurrentBalance":300.0,"NewBalance":280.0,"NewCheckKey":null},"ActionName":"CanPlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:40 PM">Play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"PlayGame"}</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:40 PM">Retuning with:
+{"ActionData":{"ID":"00000000-0000-0000-0000-000000000000","Number":"","CheckNum":0,"CustomerID":null,"ExpiryDate":"2019-10-16T17:21:40.0130901-06:00","LimitBalance":0.0,"ActivationDate":"2019-10-16T17:21:40.0130901-06:00","Comments":"machine purchase","IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CustomerBalance":0.0,"Customer":{"ID":"00000000-0000-0000-0000-000000000000","FirstName":null,"MiddleName":null,"LastName":null,"Email":null,"PhoneNumber":null,"DOB":null,"Gender":null,"AddressLine1":null,"AddressLine2":null,"City":null,"State":null,"StateID":null,"CountryID":null,"Zip":null,"VRStoreID":null,"Balance":0.0,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CardCount":0}},"ActionName":"PlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:42 PM">Ending Game Menue to start Game</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:42 PM">GameInstancer - Game is starting. Time Starting 10/16/2019 5:21:42 PM Game: Phantom Breaker: Battle Grounds</RegularMessage>
+<RegularMessage Time="10/16/2019 11:21:42 PM">GameInstancer - Game has started. Time started: 10/16/2019 5:21:42 PM under mode NoCardNeededDemoMode</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:07 PM">GameInstancer - Game has Ended. Time Ended 10/16/2019 5:23:07 PM Reason: One or more of the Process has or was ended.
+As such a full shut down was started.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:07 PM">GameMenu - Game Menu has Started in response.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:09 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:09 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:15 PM">Demo Started 10/16/2019 11:23:15 PM </RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:16 PM">Can play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"CanPlayGame"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:16 PM">Retuning with:
+{"ActionData":{"CanPlay":true,"CurrentBalance":300.0,"NewBalance":280.0,"NewCheckKey":null},"ActionName":"CanPlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:26 PM">Demo Started 10/16/2019 11:23:26 PM </RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:26 PM">Can play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"CanPlayGame"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:26 PM">Retuning with:
+{"ActionData":{"CanPlay":true,"CurrentBalance":300.0,"NewBalance":280.0,"NewCheckKey":null},"ActionName":"CanPlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:32 PM">Play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"PlayGame"}</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:32 PM">Retuning with:
+{"ActionData":{"ID":"00000000-0000-0000-0000-000000000000","Number":"","CheckNum":0,"CustomerID":null,"ExpiryDate":"2019-10-16T17:23:32.2153392-06:00","LimitBalance":0.0,"ActivationDate":"2019-10-16T17:23:32.2153392-06:00","Comments":"machine purchase","IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CustomerBalance":0.0,"Customer":{"ID":"00000000-0000-0000-0000-000000000000","FirstName":null,"MiddleName":null,"LastName":null,"Email":null,"PhoneNumber":null,"DOB":null,"Gender":null,"AddressLine1":null,"AddressLine2":null,"City":null,"State":null,"StateID":null,"CountryID":null,"Zip":null,"VRStoreID":null,"Balance":0.0,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CardCount":0}},"ActionName":"PlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:34 PM">Ending Game Menue to start Game</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:34 PM">GameInstancer - Game is starting. Time Starting 10/16/2019 5:23:34 PM Game: Phantom Breaker: Battle Grounds</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:34 PM">GameInstancer - Game has started. Time started: 10/16/2019 5:23:34 PM under mode NoCardNeededDemoMode</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:54 PM">GameInstancer - Game has Ended. Time Ended 10/16/2019 5:23:54 PM Reason: One or more of the Process has or was ended.
+As such a full shut down was started.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:54 PM">GameMenu - Game Menu has Started in response.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:56 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:23:56 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:41 PM">'Arcade Game Start And Stop Service' has Started with the following parameters:
+	CardModeMode:NoCardNeededDemoMode
+	ServerMode:NoServerDemoMode
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:43 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:43 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:50 PM">Demo Started 10/16/2019 11:24:50 PM </RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:50 PM">Can play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"CanPlayGame"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:50 PM">Retuning with:
+{"ActionData":{"CanPlay":true,"CurrentBalance":300.0,"NewBalance":280.0,"NewCheckKey":null},"ActionName":"CanPlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:54 PM">Play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"PlayGame"}</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:54 PM">Retuning with:
+{"ActionData":{"ID":"00000000-0000-0000-0000-000000000000","Number":"","CheckNum":0,"CustomerID":null,"ExpiryDate":"2019-10-16T17:24:54.6803592-06:00","LimitBalance":0.0,"ActivationDate":"2019-10-16T17:24:54.6803592-06:00","Comments":"machine purchase","IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CustomerBalance":0.0,"Customer":{"ID":"00000000-0000-0000-0000-000000000000","FirstName":null,"MiddleName":null,"LastName":null,"Email":null,"PhoneNumber":null,"DOB":null,"Gender":null,"AddressLine1":null,"AddressLine2":null,"City":null,"State":null,"StateID":null,"CountryID":null,"Zip":null,"VRStoreID":null,"Balance":0.0,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CardCount":0}},"ActionName":"PlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:56 PM">Ending Game Menue to start Game</RegularMessage>
+<RegularMessage Time="10/16/2019 11:24:56 PM">GameInstancer - Game is starting. Time Starting 10/16/2019 5:24:56 PM Game: Phantom Breaker: Battle Grounds</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:01 PM">GameInstancer - Game has started. Time started: 10/16/2019 5:25:01 PM under mode NoCardNeededDemoMode</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:03 PM">GameInstancer - Game has Ended. Time Ended 10/16/2019 5:25:03 PM Reason: One or more of the Process has or was ended.
+As such a full shut down was started.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:03 PM">GameMenu - Game Menu has Started in response.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:05 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:05 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:15 PM">Demo Started 10/16/2019 11:25:15 PM </RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:15 PM">Can play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"CanPlayGame"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:15 PM">Retuning with:
+{"ActionData":{"CanPlay":true,"CurrentBalance":300.0,"NewBalance":280.0,"NewCheckKey":null},"ActionName":"CanPlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:19 PM">Play game called
+With Data:
+{"ActionData":{"GameGUID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B"},"ActionName":"PlayGame"}</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:19 PM">Retuning with:
+{"ActionData":{"ID":"00000000-0000-0000-0000-000000000000","Number":"","CheckNum":0,"CustomerID":null,"ExpiryDate":"2019-10-16T17:25:19.6625536-06:00","LimitBalance":0.0,"ActivationDate":"2019-10-16T17:25:19.6625536-06:00","Comments":"machine purchase","IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CustomerBalance":0.0,"Customer":{"ID":"00000000-0000-0000-0000-000000000000","FirstName":null,"MiddleName":null,"LastName":null,"Email":null,"PhoneNumber":null,"DOB":null,"Gender":null,"AddressLine1":null,"AddressLine2":null,"City":null,"State":null,"StateID":null,"CountryID":null,"Zip":null,"VRStoreID":null,"Balance":0.0,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"CardCount":0}},"ActionName":"PlayGame","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:21 PM">Ending Game Menue to start Game</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:21 PM">GameInstancer - Game is starting. Time Starting 10/16/2019 5:25:21 PM Game: Phantom Breaker: Battle Grounds</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:26 PM">GameInstancer - Game has started. Time started: 10/16/2019 5:25:26 PM under mode NoCardNeededDemoMode</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:30 PM">GameInstancer - Game has Ended. Time Ended 10/16/2019 5:25:30 PM Reason: One or more of the Process has or was ended.
+As such a full shut down was started.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:31 PM">GameMenu - Game Menu has Started in response.</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:33 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:25:33 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:27:55 PM">'Arcade Game Start And Stop Service' has Started with the following parameters:
+	CardModeMode:NoCardNeededDemoMode
+	ServerMode:NoServerDemoMode
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:27:58 PM">Get Games was called
+With Data:
+{"ActionData":{},"ActionName":"GetGames"}
+</RegularMessage>
+<RegularMessage Time="10/16/2019 11:27:58 PM">Retuning to get games with:
+{"ActionData":{"ID":null,"MachineName":null,"Description":null,"IsAttendantRequired":false,"VRStoreID":null,"IsActive":null,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"VRMachineGames":[{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609B","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Phantom Breaker: Battle Grounds","StartOptions":"","ImagePath":"PhantomBreaker","Path":"I:\\Games\\Steam\\steamapps\\common\\Phantom Breaker Battle Grounds\\bin\\pbbg_win32.exe","PlayTime":0,"Description":"This is a Indie title from japan","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609C","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"A Hat in time","StartOptions":"","ImagePath":"SuperAsteroids","Path":"I:\\Games\\Steam\\steamapps\\common\\HatinTime\\Binaries\\Win64\\HatinTimeGame.exe","PlayTime":0,"Description":"This is a Indie platformer game","OptionalExes":[{"ID":"afdssadf","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]},{"VRGameID":"1316E2E1-E19B-4E49-BDF1-CA4A24BF609D","MinNumberShares":null,"MaxNumberShares":null,"Price":25.0,"IsActive":true,"IsDeleted":false,"CreatedBy":null,"CreatedAt":"0001-01-01T00:00:00","UpdatedBy":null,"UpdatedAt":null,"Name":"Stardew Valley","StartOptions":"","ImagePath":"Test","Path":"I:\\Games\\Steam\\steamapps\\common\\Stardew Valley\\Stardew Valley.exe","PlayTime":0,"Description":"This a indie harvest moon game","OptionalExes":[{"ID":"asdfsafd","Delay":0,"Path":"C:\\Windows\\System32\\notepad.exe","StartOptions":"","IsDeleted":false}]}]},"ActionName":"GetGames","RequestStatus":"Success","Message":null}
+</RegularMessage>

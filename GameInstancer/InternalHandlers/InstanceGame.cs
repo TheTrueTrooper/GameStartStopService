@@ -256,7 +256,7 @@ namespace GameInstancerNS
                     break;
                 //check if any optional exe's have died
                 lock (GameInstance.OptionalExes)
-                    if (IsAlive)
+                    if (GameInstance.OptionalExes.Count() > 0 && IsAlive)
                     {
                         IsAlive = !GameInstance.OptionalExes.All(x => x.OptionalExe.HasExited);
                         Reason = ProcessEndedKillReason;
