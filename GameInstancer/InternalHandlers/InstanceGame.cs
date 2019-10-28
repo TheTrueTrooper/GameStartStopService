@@ -49,6 +49,10 @@ namespace GameInstancerNS
         };
         #endregion
 
+        public const string HungTimerKillReason = "The Process has hung for too long. Process has been reopened.";
+
+        public const long MaxHangTime = 30000;
+
         /// <summary>
         /// Our defualt message for a process kill
         /// </summary>
@@ -90,6 +94,11 @@ namespace GameInstancerNS
         /// A timer we can use to time the current exection and prevent game over time
         /// </summary>
         protected Stopwatch Timer = new Stopwatch();
+
+        /// <summary>
+        /// A timer we can use to time the current exection and prevent game over time
+        /// </summary>
+        protected Stopwatch HungTimer = new Stopwatch();
 
         /// <summary>
         /// A getter that returns the info of the game we started
@@ -189,6 +198,8 @@ namespace GameInstancerNS
             // Make sure the main thread doesnt get too far ahead if the other threads given any delays they may have
             if(OptionalExes.Count()>0)
                 Thread.Sleep(OptionalExes.Max(x=>x.Delay + ThreadStartExtraDelay));
+
+            Timer.Reset();
             Timer.Start();
 
             //final focus
@@ -225,7 +236,6 @@ namespace GameInstancerNS
             //mark as dead and rest timers
             Timer.Stop();
             GameEndedEventArgs EndData = new GameEndedEventArgs() { GameName = PrimaryGameExe.StartInfo.FileName, Reason = Reason, AllowedTimeInMS = (ulong)Timer.ElapsedMilliseconds };
-            Timer.Reset();
             //call reacting code
             if(IsAlive)
                 GameHasEndedEvent?.Invoke(this, EndData);
@@ -265,11 +275,30 @@ namespace GameInstancerNS
                     break;
                 //check if we still have play time
                 lock (GameInstance)
-                    if (IsAlive && 0 != GameInstance.PlayTimeAllowed && (ulong)GameInstance.Timer.ElapsedMilliseconds < GameInstance.PlayTimeAllowed)
+                    if (IsAlive && 0 != GameInstance.PlayTimeAllowed && (ulong)GameInstance.Timer.ElapsedMilliseconds > GameInstance.PlayTimeAllowed)
                     {
                         IsAlive = false;
                         Reason = PlayTimeAllowedEndedKillReason;
                     }
+
+                lock(GameInstance)
+                {
+                    if (!GameInstance.PrimaryGameExe.Responding)
+                    {
+                        GameInstance.HungTimer.Reset();
+                        GameInstance.HungTimer.Start();
+                        while (!GameInstance.PrimaryGameExe.Responding)
+                        {
+                            if(!GameInstance.PrimaryGameExe.Responding && MaxHangTime < GameInstance.HungTimer.ElapsedMilliseconds)
+                            {
+                                GameInstance.Kill(HungTimerKillReason);
+                                GameInstance.StartGame();
+                                break;
+                            }
+                        }
+                        GameInstance.HungTimer.Stop();
+                    }
+                }
             }
             //Kill on end
             lock (GameInstance)

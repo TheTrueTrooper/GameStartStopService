@@ -11,7 +11,6 @@ C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\b
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib_aip_iso14443A.dll
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib_nfc.dll
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib_reader.dll
-C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\rfidlib.cs
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\Drivers\rfidlib_drv_RL8000.dll
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\ServicePipeLine.dll
 C:\Users\Angelo's Tower PC\source\repos\GameStartStopService\TestClientConsole\bin\Debug\Newtonsoft.Json.dll
